@@ -1,0 +1,453 @@
+/* Familiepoule WK 2026 — front-end logica.
+   Bron van waarheid = window.WK (gegenereerd uit de JSON-database).
+   Handmatig ingevoerde uitslagen worden lokaal bewaard in localStorage, zodat
+   ze blijven staan zonder de databasebestanden te wijzigen. Een uitslag die al
+   in de database staat (bv. door de ochtend-update) heeft altijd voorrang. */
+
+const WK = window.WK;
+const CFG = WK.config;
+const MATCHES = WK.matches;
+const PREDS = WK.predictions;
+const BONUS = WK.bonusPredictions;
+const PARTS = CFG.participants;
+
+const LS_RESULTS = "wk2026_results";
+const LS_BONUS = "wk2026_bonus";
+
+function loadLS(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || {}; }
+  catch { return {}; }
+}
+function saveLS(key, obj) { localStorage.setItem(key, JSON.stringify(obj)); }
+
+let localResults = loadLS(LS_RESULTS);   // { mid: {home, away} }
+let localBonus = loadLS(LS_BONUS);       // { champion, topscorer: [..] }
+
+// Effectieve uitslag: database wint, anders lokaal ingevoerd.
+function resultOf(match) {
+  if (match.result && Number.isInteger(match.result.home)) return match.result;
+  const lr = localResults[match.id];
+  if (lr && Number.isInteger(lr.home) && Number.isInteger(lr.away)) return lr;
+  return null;
+}
+function championResult() {
+  return (CFG.bonus.champion.result) || localBonus.champion || null;
+}
+function topscorerResult() {
+  const fromCfg = CFG.bonus.topscorer.result;
+  if (fromCfg && fromCfg.length) return fromCfg;
+  return localBonus.topscorer || [];
+}
+
+// ---------- Berekeningen ----------
+function standingsForGroup(letter) {
+  const teams = CFG.groups[letter];
+  const rows = {};
+  teams.forEach(t => rows[t] = { team: t, P:0, W:0, D:0, L:0, GF:0, GA:0, Pts:0 });
+  MATCHES.filter(m => m.group === letter).forEach(m => {
+    const r = resultOf(m);
+    if (!r) return;
+    const h = rows[m.home], a = rows[m.away];
+    h.P++; a.P++; h.GF += r.home; h.GA += r.away; a.GF += r.away; a.GA += r.home;
+    if (r.home > r.away) { h.W++; a.L++; h.Pts += 3; }
+    else if (r.home < r.away) { a.W++; h.L++; a.Pts += 3; }
+    else { h.D++; a.D++; h.Pts++; a.Pts++; }
+  });
+  return Object.values(rows).sort((x, y) =>
+    y.Pts - x.Pts || (y.GF - y.GA) - (x.GF - x.GA) || y.GF - x.GF || x.team.localeCompare(y.team));
+}
+
+function computeLeaderboard() {
+  const champ = championResult();
+  const tops = topscorerResult();
+  const board = PARTS.map(name => {
+    let groupPts = 0, played = 0, exact = 0;
+    MATCHES.forEach(m => {
+      const r = resultOf(m);
+      if (!r) return;
+      played++;
+      const pts = scoreMatch(parseScore(PREDS[m.id][name]), r);
+      groupPts += pts;
+      if (pts === CFG.scoring.exact) exact++;
+    });
+    let bonusPts = 0;
+    if (champ && BONUS.champion[name] &&
+        String(BONUS.champion[name]).trim().toUpperCase() === String(champ).trim().toUpperCase())
+      bonusPts += CFG.scoring.champion;
+    if (tops.length && BONUS.topscorer[name] &&
+        tops.some(t => String(t).trim().toLowerCase() === String(BONUS.topscorer[name]).trim().toLowerCase()))
+      bonusPts += CFG.scoring.topscorer;
+    return { name, groupPts, bonusPts, total: groupPts + bonusPts, played, exact };
+  });
+  board.sort((a, b) => b.total - a.total || b.exact - a.exact || a.name.localeCompare(b.name));
+  // rang met gedeelde posities
+  let rank = 0, prev = null;
+  board.forEach((row, i) => { if (row.total !== prev) { rank = i + 1; prev = row.total; } row.rank = rank; });
+  return board;
+}
+
+const playedCount = () => MATCHES.filter(m => resultOf(m)).length;
+
+// ---------- Helpers ----------
+const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+function ptsClass(p) { return p === 200 ? "pts200" : p === 100 ? "pts100" : p === 95 ? "pts95" : p === 75 ? "pts75" : p === 20 ? "pts20" : "pts0"; }
+function fmtDate(iso, label) {
+  if (!iso) return label || "";
+  const d = new Date(iso);
+  const days = ["zo","ma","di","wo","do","vr","za"];
+  const mon = ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+  return `${days[d.getDay()]} ${d.getDate()} ${mon[d.getMonth()]} · ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+}
+
+// ---------- Views ----------
+function viewKlassement() {
+  const board = computeLeaderboard();
+  const v = el(`<div></div>`);
+  v.appendChild(el(`
+    <div class="lb-head">
+      <div>
+        <h2>Klassement</h2>
+        <p class="lb-meta">${playedCount()} van ${MATCHES.length} wedstrijden gespeeld · klik op een naam voor details</p>
+      </div>
+    </div>`));
+  const ul = el(`<ul class="leaderboard"></ul>`);
+  board.forEach(row => {
+    const showMedals = playedCount() > 0;
+    const topCls = showMedals && row.rank <= 3 ? `top${row.rank}` : "";
+    const medal = showMedals && row.rank === 1 ? "🥇" : showMedals && row.rank === 2 ? "🥈" : showMedals && row.rank === 3 ? "🥉" : row.rank;
+    const li = el(`
+      <li class="lb-row ${topCls}" data-name="${esc(row.name)}">
+        <div class="lb-rank">${medal}</div>
+        <div>
+          <div class="lb-name">${esc(row.name)}</div>
+          <div class="lb-sub">${row.exact}× exact · bonus ${row.bonusPts} pt</div>
+        </div>
+        <div class="lb-points">${row.total}<small>punten</small></div>
+      </li>`);
+    li.addEventListener("click", () => openParticipant(row.name));
+    ul.appendChild(li);
+  });
+  v.appendChild(ul);
+  v.appendChild(legendBlock());
+  return v;
+}
+
+function legendBlock() {
+  const s = CFG.scoring;
+  return el(`
+    <div class="card" style="padding:16px 18px;margin-top:22px">
+      <div class="section-title" style="margin:0 0 8px">Puntentelling</div>
+      <div class="legend">
+        <span><i style="background:var(--p200)"></i> Exacte uitslag — ${s.exact}</span>
+        <span><i style="background:var(--p100)"></i> Juist gelijkspel — ${s.draw}</span>
+        <span><i style="background:var(--p95)"></i> Winnaar + doelpunten — ${s.winnerPlusGoals}</span>
+        <span><i style="background:var(--p75)"></i> Juiste winnaar — ${s.winner}</span>
+        <span><i style="background:var(--p20)"></i> Doelpunten 1 team — ${s.oneTeamGoals}</span>
+      </div>
+      <p class="hint" style="margin:10px 0 0">Bonus: kampioen ${s.champion} · topscorer ${s.topscorer}. Uitslag = stand na 90 min + eventuele verlenging; strafschoppen tellen niet mee.</p>
+    </div>`);
+}
+
+let matchFilter = "all";
+function viewWedstrijden() {
+  const v = el(`<div></div>`);
+  const groups = Object.keys(CFG.groups);
+  const filters = el(`<div class="filters"></div>`);
+  const mk = (key, lbl) => {
+    const c = el(`<button class="chip ${matchFilter===key?"active":""}">${lbl}</button>`);
+    c.addEventListener("click", () => { matchFilter = key; render(); });
+    return c;
+  };
+  filters.appendChild(mk("all", "Alle"));
+  filters.appendChild(mk("todo", "Nog te spelen"));
+  filters.appendChild(mk("done", "Gespeeld"));
+  groups.forEach(g => filters.appendChild(mk("g"+g, "Groep "+g)));
+  v.appendChild(filters);
+
+  const list = MATCHES.filter(m => {
+    const r = resultOf(m);
+    if (matchFilter === "todo") return !r;
+    if (matchFilter === "done") return !!r;
+    if (matchFilter.startsWith("g")) return m.group === matchFilter.slice(1);
+    return true;
+  });
+
+  list.forEach(m => v.appendChild(matchCard(m)));
+  if (!list.length) v.appendChild(el(`<p class="hint">Geen wedstrijden in deze selectie.</p>`));
+  return v;
+}
+
+function matchCard(m) {
+  const r = resultOf(m);
+  const scoreHtml = r
+    ? `<div class="match-score">${r.home}–${r.away}</div>`
+    : `<div class="match-score pending">vs</div>`;
+  const card = el(`
+    <div class="match" data-id="${m.id}">
+      <div class="match-head">
+        <div class="match-team home"><span>${esc(m.home)}</span><span class="flag">${m.homeFlag}</span></div>
+        <div class="match-center">
+          ${scoreHtml}
+          <div class="match-date">${fmtDate(m.datetime, m.datetimeLabel)}</div>
+          <div class="grouptag">Groep ${m.group}</div>
+        </div>
+        <div class="match-team away"><span class="flag">${m.awayFlag}</span><span>${esc(m.away)}</span></div>
+      </div>
+      <div class="match-detail"></div>
+    </div>`);
+  const head = card.querySelector(".match-head");
+  head.addEventListener("click", () => {
+    const open = card.classList.toggle("open");
+    if (open) fillMatchDetail(card.querySelector(".match-detail"), m);
+  });
+  return card;
+}
+
+function fillMatchDetail(box, m) {
+  box.innerHTML = "";
+  const r = resultOf(m);
+  const grid = el(`<div class="pred-grid"></div>`);
+  // sorteer op punten (hoog -> laag) als er een uitslag is
+  const rows = PARTS.map(name => {
+    const raw = PREDS[m.id][name];
+    const pts = r ? scoreMatch(parseScore(raw), r) : null;
+    return { name, raw, pts };
+  });
+  if (r) rows.sort((a, b) => b.pts - a.pts || a.name.localeCompare(b.name));
+  rows.forEach(({ name, raw, pts }) => {
+    const badge = r
+      ? `<span class="pts ${ptsClass(pts)}" title="${scoreLabel(pts)}">${pts}</span>`
+      : "";
+    grid.appendChild(el(`
+      <div class="pred-cell">
+        <span class="pred-name">${esc(name)}</span>
+        <span style="display:flex;align-items:center;gap:8px">
+          <span class="pred-val">${raw ? esc(raw) : "—"}</span>${badge}
+        </span>
+      </div>`));
+  });
+  if (!r) box.appendChild(el(`<p class="hint" style="padding:4px 10px">Nog niet gespeeld — voorspellingen:</p>`));
+  box.appendChild(grid);
+}
+
+function viewGroepen() {
+  const v = el(`<div></div>`);
+  v.appendChild(el(`<p class="hint">Standen worden live berekend uit de ingevoerde uitslagen. De bovenste twee (groen) plaatsen zich direct.</p>`));
+  const grid = el(`<div class="groups-grid" style="margin-top:14px"></div>`);
+  Object.keys(CFG.groups).forEach(letter => {
+    const rows = standingsForGroup(letter);
+    const card = el(`<div class="card group-card"><h3>Groep ${letter}</h3></div>`);
+    const tbl = el(`
+      <table class="standings">
+        <thead><tr>
+          <th>#</th><th class="team-col">Team</th><th title="Gespeeld">Gs</th><th title="Winst">W</th><th title="Gelijk">G</th><th title="Verlies">V</th><th title="Doelpunten voor">DV</th><th title="Doelpunten tegen">DT</th><th title="Saldo">+/−</th><th title="Punten">Ptn</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>`);
+    const tb = tbl.querySelector("tbody");
+    rows.forEach((row, i) => {
+      const flag = (MATCHES.find(m => m.home === row.team)?.homeFlag) || (MATCHES.find(m => m.away === row.team)?.awayFlag) || "";
+      tb.appendChild(el(`
+        <tr class="${i < 2 ? "qualify" : ""}">
+          <td class="pos">${i + 1}</td>
+          <td class="team-col">${flag} ${esc(row.team)}</td>
+          <td>${row.P}</td><td>${row.W}</td><td>${row.D}</td><td>${row.L}</td>
+          <td>${row.GF}</td><td>${row.GA}</td><td>${row.GF - row.GA >= 0 ? "+" : ""}${row.GF - row.GA}</td>
+          <td class="pts-col">${row.Pts}</td>
+        </tr>`));
+    });
+    card.appendChild(tbl);
+    grid.appendChild(card);
+  });
+  v.appendChild(grid);
+  return v;
+}
+
+function viewBonus() {
+  const champ = championResult();
+  const tops = topscorerResult();
+  const v = el(`<div></div>`);
+  v.appendChild(el(`<p class="hint">Kampioen en topscorer leveren elk ${CFG.scoring.champion} punten op. Vul de uitslag in op het tabblad Uitslagen.</p>`));
+  const cols = el(`<div class="bonus-cols" style="margin-top:14px"></div>`);
+
+  const champCard = el(`<div class="card bonus-card"><h3>👑 Kampioen WK 2026</h3>
+    <p class="bonus-result">${champ ? "Uitslag: <b>"+esc(champ)+"</b>" : "Nog niet bekend"}</p>
+    <ul class="bonus-list"></ul></div>`);
+  const champList = champCard.querySelector("ul");
+  const champCounts = {};
+  PARTS.forEach(n => { const p = BONUS.champion[n]; champCounts[p] = (champCounts[p]||0)+1; });
+  PARTS.forEach(n => {
+    const pick = BONUS.champion[n];
+    const hit = champ && String(pick).trim().toUpperCase() === String(champ).trim().toUpperCase();
+    champList.appendChild(el(`<li class="${hit?"hit":""}"><span class="who">${esc(n)}</span><span class="pick ${hit?"win":""}">${esc(pick||"—")}${hit?" ✓ +"+CFG.scoring.champion:""}</span></li>`));
+  });
+  cols.appendChild(champCard);
+
+  const topCard = el(`<div class="card bonus-card"><h3>🥅 Topscorer WK 2026</h3>
+    <p class="bonus-result">${tops.length ? "Uitslag: <b>"+tops.map(esc).join(", ")+"</b>" : "Nog niet bekend"}</p>
+    <ul class="bonus-list"></ul></div>`);
+  const topList = topCard.querySelector("ul");
+  PARTS.forEach(n => {
+    const pick = BONUS.topscorer[n];
+    const hit = tops.length && tops.some(t => String(t).trim().toLowerCase() === String(pick).trim().toLowerCase());
+    topList.appendChild(el(`<li class="${hit?"hit":""}"><span class="who">${esc(n)}</span><span class="pick ${hit?"win":""}">${esc(pick||"—")}${hit?" ✓ +"+CFG.scoring.topscorer:""}</span></li>`));
+  });
+  cols.appendChild(topCard);
+  v.appendChild(cols);
+  return v;
+}
+
+function viewInvoeren() {
+  const v = el(`<div></div>`);
+  v.appendChild(el(`
+    <div class="notice">
+      <b>Uitslagen invoeren.</b> Wat je hier invult wordt op dit apparaat bewaard en de standen worden direct herberekend.
+      Wedstrijden die automatisch (of door iemand anders) al in de database staan, kun je hier niet overschrijven.
+      Gebruik <b>Exporteren</b> om alles als <code>matches.json</code> te downloaden voor de gedeelde/online versie.
+    </div>`));
+
+  const toolbar = el(`<div class="toolbar"></div>`);
+  const exportBtn = el(`<button class="btn primary">⬇︎ Exporteer matches.json</button>`);
+  exportBtn.addEventListener("click", exportMatches);
+  const clearBtn = el(`<button class="btn danger">Lokale invoer wissen</button>`);
+  clearBtn.addEventListener("click", () => {
+    if (confirm("Alle lokaal ingevoerde uitslagen op dit apparaat wissen?")) {
+      localResults = {}; saveLS(LS_RESULTS, localResults); render();
+    }
+  });
+  toolbar.appendChild(exportBtn); toolbar.appendChild(clearBtn);
+  v.appendChild(toolbar);
+
+  // Bonus-invoer
+  const bonusBox = el(`<div class="card" style="padding:14px 16px;margin-bottom:16px">
+      <div class="section-title" style="margin:0 0 10px">Bonus-uitslag</div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <label style="font-size:13px">Kampioen (code, bv. NED):
+          <input id="champ-in" class="" style="width:90px;padding:8px;background:var(--bg-2);border:1px solid var(--line);color:var(--text);border-radius:8px;text-transform:uppercase" value="${esc(localBonus.champion||"")}">
+        </label>
+        <label style="font-size:13px">Topscorer(s) (komma-gescheiden):
+          <input id="top-in" style="width:240px;padding:8px;background:var(--bg-2);border:1px solid var(--line);color:var(--text);border-radius:8px" value="${esc((localBonus.topscorer||[]).join(", "))}">
+        </label>
+        <button class="btn" id="save-bonus">Bonus opslaan</button>
+      </div>
+    </div>`);
+  bonusBox.querySelector("#save-bonus").addEventListener("click", () => {
+    localBonus.champion = bonusBox.querySelector("#champ-in").value.trim().toUpperCase() || null;
+    localBonus.topscorer = bonusBox.querySelector("#top-in").value.split(",").map(s=>s.trim()).filter(Boolean);
+    saveLS(LS_BONUS, localBonus);
+    render();
+  });
+  v.appendChild(bonusBox);
+
+  const card = el(`<div class="card"></div>`);
+  MATCHES.forEach(m => {
+    const fileLocked = m.result && Number.isInteger(m.result.home);
+    const r = resultOf(m) || {};
+    const row = el(`
+      <div class="entry-row" data-id="${m.id}">
+        <div class="entry-team home">${esc(m.home)} <span class="flag">${m.homeFlag}</span></div>
+        <div class="score-inputs">
+          <input type="number" min="0" class="in-h" value="${Number.isInteger(r.home)?r.home:""}" ${fileLocked?"disabled":""}>
+          <span>–</span>
+          <input type="number" min="0" class="in-a" value="${Number.isInteger(r.away)?r.away:""}" ${fileLocked?"disabled":""}>
+        </div>
+        <div class="entry-team away"><span class="flag">${m.awayFlag}</span> ${esc(m.away)}</div>
+        <div class="entry-status ${fileLocked?"saved":""}">${fileLocked?"in database":(localResults[m.id]?"opgeslagen":"")} <span class="grouptag">${m.group}</span></div>
+      </div>`);
+    if (!fileLocked) {
+      const h = row.querySelector(".in-h"), a = row.querySelector(".in-a");
+      const status = row.querySelector(".entry-status");
+      const onChange = () => {
+        const hv = h.value === "" ? null : parseInt(h.value, 10);
+        const av = a.value === "" ? null : parseInt(a.value, 10);
+        if (Number.isInteger(hv) && Number.isInteger(av) && hv >= 0 && av >= 0) {
+          localResults[m.id] = { home: hv, away: av };
+          status.textContent = "opgeslagen ✓"; status.classList.add("saved");
+        } else {
+          delete localResults[m.id];
+          status.textContent = ""; status.classList.remove("saved");
+        }
+        saveLS(LS_RESULTS, localResults);
+        updateBadge();
+      };
+      h.addEventListener("input", onChange);
+      a.addEventListener("input", onChange);
+    }
+    card.appendChild(row);
+  });
+  v.appendChild(card);
+  return v;
+}
+
+function exportMatches() {
+  const merged = MATCHES.map(m => ({ ...m, result: resultOf(m) }));
+  const blob = new Blob([JSON.stringify(merged, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "matches.json"; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------- Deelnemer-detail ----------
+function openParticipant(name) {
+  const champ = championResult(), tops = topscorerResult();
+  const content = document.getElementById("modal-content");
+  const board = computeLeaderboard();
+  const me = board.find(b => b.name === name);
+  let rowsHtml = "";
+  MATCHES.forEach(m => {
+    const r = resultOf(m);
+    const raw = PREDS[m.id][name];
+    const pts = r ? scoreMatch(parseScore(raw), r) : null;
+    rowsHtml += `
+      <div class="detail-row">
+        <span class="dmatch">${m.homeFlag} ${esc(m.home)} – ${esc(m.away)} ${m.awayFlag}
+          <span class="grouptag">${m.group}</span></span>
+        <span class="dpred">${raw?esc(raw):"—"}${r?` · <b>${r.home}–${r.away}</b>`:""}</span>
+        <span>${r?`<span class="pts ${ptsClass(pts)}">${pts}</span>`:`<span class="hint">—</span>`}</span>
+      </div>`;
+  });
+  const champHit = champ && String(BONUS.champion[name]).trim().toUpperCase() === String(champ).trim().toUpperCase();
+  const topHit = tops.length && tops.some(t => String(t).trim().toLowerCase() === String(BONUS.topscorer[name]).trim().toLowerCase());
+  content.innerHTML = `
+    <h2>${esc(name)}</h2>
+    <p class="hint">Plek ${me.rank} · ${me.total} punten · ${me.exact}× exacte uitslag</p>
+    <div class="card" style="padding:12px 16px;margin:14px 0">
+      <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px">
+        <span>Groepsfase: <b>${me.groupPts}</b></span>
+        <span>Bonus: <b>${me.bonusPts}</b></span>
+        <span>Kampioen: ${esc(BONUS.champion[name]||"—")} ${champHit?"✓":""}</span>
+        <span>Topscorer: ${esc(BONUS.topscorer[name]||"—")} ${topHit?"✓":""}</span>
+      </div>
+    </div>
+    <div class="section-title" style="margin:6px 0 0">Per wedstrijd</div>
+    ${rowsHtml}`;
+  document.getElementById("modal").classList.remove("hidden");
+}
+
+// ---------- Routing ----------
+let currentTab = "klassement";
+function render() {
+  const view = document.getElementById("view");
+  view.innerHTML = "";
+  const map = { klassement: viewKlassement, wedstrijden: viewWedstrijden, groepen: viewGroepen, bonus: viewBonus, invoeren: viewInvoeren };
+  view.appendChild((map[currentTab] || viewKlassement)());
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === currentTab));
+  updateBadge();
+}
+function updateBadge() {
+  document.getElementById("updated-badge").textContent = `${playedCount()}/${MATCHES.length} gespeeld`;
+}
+
+document.getElementById("tabs").addEventListener("click", e => {
+  const btn = e.target.closest(".tab");
+  if (!btn) return;
+  currentTab = btn.dataset.tab;
+  render();
+});
+document.getElementById("modal").addEventListener("click", e => {
+  if (e.target.hasAttribute("data-close")) document.getElementById("modal").classList.add("hidden");
+});
+
+render();

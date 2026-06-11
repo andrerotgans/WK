@@ -1,0 +1,117 @@
+{
+  "title": "WK Voetbal 2026 — Familiepoule",
+  "tournamentStart": "2026-06-11",
+  "participants": [
+    "Simon",
+    "Ann",
+    "Marco",
+    "Anna",
+    "Femke",
+    "Jan / Annemarie",
+    "Maartje",
+    "Nan",
+    "Mark",
+    "Dautie",
+    "Femm",
+    "Tijme",
+    "Piet",
+    "Willy",
+    "André",
+    "Linda",
+    "Marijn",
+    "Thijs / Esther"
+  ],
+  "groups": {
+    "A": [
+      "Mexico",
+      "Zuid-Afrika",
+      "Zuid-Korea",
+      "Tsjechië"
+    ],
+    "B": [
+      "Canada",
+      "Qatar",
+      "Zwitserland",
+      "Boznië en Herzegovina"
+    ],
+    "C": [
+      "Brazilië",
+      "Marokko",
+      "Haïti",
+      "Schotland"
+    ],
+    "D": [
+      "Verenigde Staten",
+      "Australië",
+      "Paraguay",
+      "Turkije"
+    ],
+    "E": [
+      "Duitsland",
+      "Curaçao",
+      "Ivoorkust",
+      "Ecuador"
+    ],
+    "F": [
+      "Nederland",
+      "Japan",
+      "Tunesië",
+      "Zweden"
+    ],
+    "G": [
+      "België",
+      "Egypte",
+      "Iran",
+      "Nieuw-Zeeland"
+    ],
+    "H": [
+      "Spanje",
+      "Kaapverdië",
+      "Saoedie-Arabië",
+      "Uruguay"
+    ],
+    "I": [
+      "Frankrijk",
+      "Senegal",
+      "Noorwegen",
+      "Irak"
+    ],
+    "J": [
+      "Argentinië",
+      "Algerije",
+      "Oostenrijk",
+      "Jordanië"
+    ],
+    "K": [
+      "Portugal",
+      "Oezbekistan",
+      "Colombia",
+      "Congo-Kinshasa"
+    ],
+    "L": [
+      "Engeland",
+      "Kroatië",
+      "Ghana",
+      "Panama"
+    ]
+  },
+  "scoring": {
+    "exact": 200,
+    "draw": 100,
+    "winnerPlusGoals": 95,
+    "winner": 75,
+    "oneTeamGoals": 20,
+    "champion": 300,
+    "topscorer": 300
+  },
+  "bonus": {
+    "champion": {
+      "label": "Kampioen WK 2026",
+      "result": null
+    },
+    "topscorer": {
+      "label": "Topscorer WK 2026",
+      "result": []
+    }
+  }
+}

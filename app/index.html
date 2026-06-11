@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WK Voetbal 2026 — Familiepoule</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-ball">⚽</span>
+        <div>
+          <h1>WK Voetbal 2026</h1>
+          <p class="subtitle">Familiepoule · Groepsfase</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span id="updated-badge" class="badge">—</span>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="klassement">🏆 Klassement</button>
+      <button class="tab" data-tab="wedstrijden">📅 Wedstrijden</button>
+      <button class="tab" data-tab="groepen">📊 Groepen</button>
+      <button class="tab" data-tab="bonus">⭐ Bonus</button>
+      <button class="tab" data-tab="invoeren">✏️ Uitslagen</button>
+    </nav>
+  </header>
+
+  <main id="view"></main>
+
+  <footer class="site-footer">
+    <p>Gemaakt voor de familiepoule · standen worden live berekend uit de ingevoerde uitslagen.</p>
+  </footer>
+
+  <!-- Detail-overlay voor een deelnemer -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close>✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="bundle.js"></script>
+  <script src="scoring.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

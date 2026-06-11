@@ -1,0 +1,42 @@
+{
+  "champion": {
+    "Simon": "ARG",
+    "Ann": "ARG",
+    "Marco": "BRA",
+    "Anna": "NED",
+    "Femke": "FRA",
+    "Jan / Annemarie": "SPA",
+    "Maartje": "FRA",
+    "Nan": "FRA",
+    "Mark": "SPA",
+    "Dautie": "BRA",
+    "Femm": "SPA",
+    "Tijme": "NED",
+    "Piet": "BRA",
+    "Willy": "SPA",
+    "André": "SPA",
+    "Linda": "SPA",
+    "Marijn": "NED",
+    "Thijs / Esther": "NED"
+  },
+  "topscorer": {
+    "Simon": "Messi",
+    "Ann": "Messi",
+    "Marco": "Mbappé",
+    "Anna": "Mbappé",
+    "Femke": "Mbappé",
+    "Jan / Annemarie": "Malen",
+    "Maartje": "Mbappé",
+    "Nan": "Mbappé",
+    "Mark": "Mbappé",
+    "Dautie": "Malen",
+    "Femm": "Kane",
+    "Tijme": "Kane",
+    "Piet": "Kane",
+    "Willy": "Kane",
+    "André": "Mbappé",
+    "Linda": "Mbappé",
+    "Marijn": "Olise",
+    "Thijs / Esther": "Mbappé"
+  }
+}
