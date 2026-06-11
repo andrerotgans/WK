@@ -40,7 +40,7 @@ invullen, zodat de stand van de poule klopt.
    ```bash
    git add -A && git commit -m "Uitslagen <datum>" && git push
    ```
-   (`set_result.py` heeft `app/bundle.js` al opnieuw gebouwd.)
+   (`set_result.py` heeft `docs/bundle.js` al opnieuw gebouwd.)
 
 ## Veiligheidsregels
 - Nooit een al ingevulde uitslag overschrijven tenzij die aantoonbaar fout was.

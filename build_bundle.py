@@ -19,8 +19,8 @@ bundle = {
     "generatedAt": datetime.datetime.now().isoformat(timespec="seconds"),
 }
 
-os.makedirs(os.path.join(HERE, "app"), exist_ok=True)
-out = os.path.join(HERE, "app", "bundle.js")
+os.makedirs(os.path.join(HERE, "docs"), exist_ok=True)
+out = os.path.join(HERE, "docs", "bundle.js")
 with open(out, "w", encoding="utf-8") as f:
     f.write("window.WK = ")
     json.dump(bundle, f, ensure_ascii=False, indent=2)

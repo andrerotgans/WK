@@ -5,8 +5,8 @@ deelnemers wordt **live** berekend uit de ingevoerde uitslagen.
 
 ## Snel bekijken (lokaal)
 
-De site staat in `app/` en werkt zonder server: dubbelklik op
-`app/index.html`. (Wil je een server: `python3 -m http.server 8123 --directory app`
+De site staat in `docs/` en werkt zonder server: dubbelklik op
+`docs/index.html`. (Wil je een server: `python3 -m http.server 8123 --directory docs`
 en ga naar <http://localhost:8123>.)
 
 ## Mappen
@@ -17,10 +17,10 @@ data/                 ← de "database" (bron van waarheid, leesbare JSON)
   matches.json        ← alle 72 wedstrijden + (later) de echte uitslagen
   predictions.json    ← de voorspelling van elke deelnemer per wedstrijd
   bonus_predictions.json ← voorspellingen kampioen + topscorer
-app/                  ← de website
+docs/                  ← de website
   index.html, style.css, app.js, scoring.js
   bundle.js           ← automatisch gegenereerd uit data/ (niet handmatig wijzigen)
-build_bundle.py       ← zet data/ om naar app/bundle.js
+build_bundle.py       ← zet data/ om naar docs/bundle.js
 set_result.py         ← uitslag invoeren + site herbouwen (zie hieronder)
 UPDATE_RUNBOOK.md     ← stappen voor de automatische ochtend-update
 ```
@@ -35,7 +35,7 @@ python3 set_result.py --topscorer "Mbappé,Kane"
 python3 set_result.py --list-todo        # toon nog niet gespeelde wedstrijden
 ```
 
-Elke wijziging bouwt `app/bundle.js` opnieuw, zodat de site klopt. Je kunt ook
+Elke wijziging bouwt `docs/bundle.js` opnieuw, zodat de site klopt. Je kunt ook
 op het tabblad **Uitslagen** in de site zelf invoeren (wordt op dat apparaat
 bewaard); de scripts/database hebben altijd voorrang.
 
