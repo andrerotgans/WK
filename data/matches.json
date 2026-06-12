@@ -8,7 +8,10 @@
     "away": "Zuid-Afrika",
     "homeFlag": "🇲🇽",
     "awayFlag": "🇿🇦",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "m02",
@@ -19,7 +22,10 @@
     "away": "Tsjechië",
     "homeFlag": "🇰🇷",
     "awayFlag": "🇨🇿",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "m03",
