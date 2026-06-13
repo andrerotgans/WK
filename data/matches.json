@@ -36,7 +36,10 @@
     "away": "Boznië en Herzegovina",
     "homeFlag": "🇨🇦",
     "awayFlag": "🇧🇦",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m04",
@@ -47,7 +50,10 @@
     "away": "Paraguay",
     "homeFlag": "🇺🇸",
     "awayFlag": "🇵🇾",
-    "result": null
+    "result": {
+      "home": 4,
+      "away": 1
+    }
   },
   {
     "id": "m05",

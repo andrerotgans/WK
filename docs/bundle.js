@@ -154,7 +154,10 @@ window.WK = {
       "away": "Boznië en Herzegovina",
       "homeFlag": "🇨🇦",
       "awayFlag": "🇧🇦",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "m04",
@@ -165,7 +168,10 @@ window.WK = {
       "away": "Paraguay",
       "homeFlag": "🇺🇸",
       "awayFlag": "🇵🇾",
-      "result": null
+      "result": {
+        "home": 4,
+        "away": 1
+      }
     },
     {
       "id": "m05",
@@ -2400,5 +2406,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-12T09:03:56"
+  "generatedAt": "2026-06-13T15:52:14"
 };
