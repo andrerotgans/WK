@@ -64,7 +64,10 @@
     "away": "Zwitserland",
     "homeFlag": "🇶🇦",
     "awayFlag": "🇨🇭",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m06",
@@ -75,7 +78,10 @@
     "away": "Marokko",
     "homeFlag": "🇧🇷",
     "awayFlag": "🇲🇦",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m07",
@@ -86,7 +92,10 @@
     "away": "Schotland",
     "homeFlag": "🇭🇹",
     "awayFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 1
+    }
   },
   {
     "id": "m08",
@@ -97,7 +106,10 @@
     "away": "Turkije",
     "homeFlag": "🇦🇺",
     "awayFlag": "🇹🇷",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "m09",
