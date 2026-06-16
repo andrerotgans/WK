@@ -176,7 +176,10 @@
     "away": "Kaapverdië",
     "homeFlag": "🇪🇸",
     "awayFlag": "🇨🇻",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m14",
@@ -187,7 +190,10 @@
     "away": "Egypte",
     "homeFlag": "🇧🇪",
     "awayFlag": "🇪🇬",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m15",
@@ -198,7 +204,10 @@
     "away": "Uruguay",
     "homeFlag": "🇸🇦",
     "awayFlag": "🇺🇾",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m16",
@@ -209,7 +218,10 @@
     "away": "Nieuw-Zeeland",
     "homeFlag": "🇮🇷",
     "awayFlag": "🇳🇿",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 2
+    }
   },
   {
     "id": "m17",
