@@ -232,7 +232,10 @@
     "away": "Senegal",
     "homeFlag": "🇫🇷",
     "awayFlag": "🇸🇳",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 1
+    }
   },
   {
     "id": "m18",
@@ -243,7 +246,10 @@
     "away": "Noorwegen",
     "homeFlag": "🇮🇶",
     "awayFlag": "🇳🇴",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 4
+    }
   },
   {
     "id": "m19",
@@ -254,7 +260,10 @@
     "away": "Algerije",
     "homeFlag": "🇦🇷",
     "awayFlag": "🇩🇿",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 0
+    }
   },
   {
     "id": "m20",
@@ -265,7 +274,10 @@
     "away": "Jordanië",
     "homeFlag": "🇦🇹",
     "awayFlag": "🇯🇴",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "m21",
