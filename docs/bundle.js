@@ -462,7 +462,10 @@ window.WK = {
       "away": "Zuid-Afrika",
       "homeFlag": "🇨🇿",
       "awayFlag": "🇿🇦",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "m26",
@@ -2466,5 +2469,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-18T07:59:54"
+  "generatedAt": "2026-06-18T20:16:40"
 };

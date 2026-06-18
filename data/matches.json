@@ -344,7 +344,10 @@
     "away": "Zuid-Afrika",
     "homeFlag": "🇨🇿",
     "awayFlag": "🇿🇦",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m26",
