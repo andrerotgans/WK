@@ -288,7 +288,10 @@
     "away": "Congo-Kinshasa",
     "homeFlag": "🇵🇹",
     "awayFlag": "🇨🇩",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m22",
@@ -299,7 +302,10 @@
     "away": "Kroatië",
     "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "awayFlag": "🇭🇷",
-    "result": null
+    "result": {
+      "home": 4,
+      "away": 2
+    }
   },
   {
     "id": "m23",
@@ -310,7 +316,10 @@
     "away": "Panama",
     "homeFlag": "🇬🇭",
     "awayFlag": "🇵🇦",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 0
+    }
   },
   {
     "id": "m24",
@@ -321,7 +330,10 @@
     "away": "Colombia",
     "homeFlag": "🇺🇿",
     "awayFlag": "🇨🇴",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 3
+    }
   },
   {
     "id": "m25",
