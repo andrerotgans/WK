@@ -358,7 +358,10 @@
     "away": "Boznië en Herzegovina",
     "homeFlag": "🇨🇭",
     "awayFlag": "🇧🇦",
-    "result": null
+    "result": {
+      "home": 4,
+      "away": 1
+    }
   },
   {
     "id": "m27",
@@ -369,7 +372,10 @@
     "away": "Qatar",
     "homeFlag": "🇨🇦",
     "awayFlag": "🇶🇦",
-    "result": null
+    "result": {
+      "home": 6,
+      "away": 0
+    }
   },
   {
     "id": "m28",
@@ -380,7 +386,10 @@
     "away": "Zuid-Korea",
     "homeFlag": "🇲🇽",
     "awayFlag": "🇰🇷",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 0
+    }
   },
   {
     "id": "m29",
