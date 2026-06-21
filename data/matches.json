@@ -456,7 +456,10 @@
     "away": "Zweden",
     "homeFlag": "🇳🇱",
     "awayFlag": "🇸🇪",
-    "result": null
+    "result": {
+      "home": 5,
+      "away": 1
+    }
   },
   {
     "id": "m34",
@@ -467,7 +470,10 @@
     "away": "Ivoorkust",
     "homeFlag": "🇩🇪",
     "awayFlag": "🇨🇮",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "m35",
@@ -478,7 +484,10 @@
     "away": "Curaçao",
     "homeFlag": "🇪🇨",
     "awayFlag": "🇨🇼",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m36",
@@ -489,7 +498,10 @@
     "away": "Japan",
     "homeFlag": "🇹🇳",
     "awayFlag": "🇯🇵",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 4
+    }
   },
   {
     "id": "m37",
