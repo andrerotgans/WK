@@ -512,7 +512,10 @@
     "away": "Saoedie-Arabië",
     "homeFlag": "🇪🇸",
     "awayFlag": "🇸🇦",
-    "result": null
+    "result": {
+      "home": 4,
+      "away": 0
+    }
   },
   {
     "id": "m38",
@@ -523,7 +526,10 @@
     "away": "Iran",
     "homeFlag": "🇧🇪",
     "awayFlag": "🇮🇷",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m39",
@@ -534,7 +540,10 @@
     "away": "Kaapverdië",
     "homeFlag": "🇺🇾",
     "awayFlag": "🇨🇻",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 2
+    }
   },
   {
     "id": "m40",
@@ -545,7 +554,10 @@
     "away": "Egypte",
     "homeFlag": "🇳🇿",
     "awayFlag": "🇪🇬",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 3
+    }
   },
   {
     "id": "m41",
