@@ -686,7 +686,10 @@ window.WK = {
       "away": "Oostenrijk",
       "homeFlag": "🇦🇷",
       "awayFlag": "🇦🇹",
-      "result": null
+      "result": {
+        "home": 2,
+        "away": 0
+      }
     },
     {
       "id": "m42",
@@ -697,7 +700,10 @@ window.WK = {
       "away": "Irak",
       "homeFlag": "🇫🇷",
       "awayFlag": "🇮🇶",
-      "result": null
+      "result": {
+        "home": 4,
+        "away": 0
+      }
     },
     {
       "id": "m43",
@@ -708,7 +714,10 @@ window.WK = {
       "away": "Senegal",
       "homeFlag": "🇳🇴",
       "awayFlag": "🇸🇳",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 0
+      }
     },
     {
       "id": "m44",
@@ -719,7 +728,10 @@ window.WK = {
       "away": "Algerije",
       "homeFlag": "🇯🇴",
       "awayFlag": "🇩🇿",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 2
+      }
     },
     {
       "id": "m45",
@@ -2514,5 +2526,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-22T07:31:32"
+  "generatedAt": "2026-06-23T08:22:34"
 };

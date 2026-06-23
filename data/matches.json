@@ -568,7 +568,10 @@
     "away": "Oostenrijk",
     "homeFlag": "🇦🇷",
     "awayFlag": "🇦🇹",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "m42",
@@ -579,7 +582,10 @@
     "away": "Irak",
     "homeFlag": "🇫🇷",
     "awayFlag": "🇮🇶",
-    "result": null
+    "result": {
+      "home": 4,
+      "away": 0
+    }
   },
   {
     "id": "m43",
@@ -590,7 +596,10 @@
     "away": "Senegal",
     "homeFlag": "🇳🇴",
     "awayFlag": "🇸🇳",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 0
+    }
   },
   {
     "id": "m44",
@@ -601,7 +610,10 @@
     "away": "Algerije",
     "homeFlag": "🇯🇴",
     "awayFlag": "🇩🇿",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 2
+    }
   },
   {
     "id": "m45",
