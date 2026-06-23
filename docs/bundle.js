@@ -701,7 +701,7 @@ window.WK = {
       "homeFlag": "🇫🇷",
       "awayFlag": "🇮🇶",
       "result": {
-        "home": 4,
+        "home": 3,
         "away": 0
       }
     },
@@ -2526,5 +2526,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-23T08:22:34"
+  "generatedAt": "2026-06-23T08:35:05"
 };
