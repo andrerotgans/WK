@@ -624,7 +624,10 @@
     "away": "Oezbekistan",
     "homeFlag": "🇵🇹",
     "awayFlag": "🇺🇿",
-    "result": null
+    "result": {
+      "home": 5,
+      "away": 0
+    }
   },
   {
     "id": "m46",
@@ -635,7 +638,10 @@
     "away": "Ghana",
     "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "awayFlag": "🇬🇭",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m47",
@@ -646,7 +652,10 @@
     "away": "Kroatië",
     "homeFlag": "🇵🇦",
     "awayFlag": "🇭🇷",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 1
+    }
   },
   {
     "id": "m48",
@@ -657,7 +666,10 @@
     "away": "Congo-Kinshasa",
     "homeFlag": "🇨🇴",
     "awayFlag": "🇨🇩",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 0
+    }
   },
   {
     "id": "m49",
