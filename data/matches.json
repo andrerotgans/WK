@@ -764,7 +764,10 @@
     "away": "Ivoorkust",
     "homeFlag": "🇨🇼",
     "awayFlag": "🇨🇮",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 2
+    }
   },
   {
     "id": "m56",
@@ -775,7 +778,10 @@
     "away": "Duitsland",
     "homeFlag": "🇪🇨",
     "awayFlag": "🇩🇪",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "m57",
@@ -786,7 +792,10 @@
     "away": "Zweden",
     "homeFlag": "🇯🇵",
     "awayFlag": "🇸🇪",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m58",
@@ -797,7 +806,10 @@
     "away": "Nederland",
     "homeFlag": "🇹🇳",
     "awayFlag": "🇳🇱",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 3
+    }
   },
   {
     "id": "m59",
@@ -808,7 +820,10 @@
     "away": "Australië",
     "homeFlag": "🇵🇾",
     "awayFlag": "🇦🇺",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m60",
@@ -819,7 +834,10 @@
     "away": "Verenigde Staten",
     "homeFlag": "🇹🇷",
     "awayFlag": "🇺🇸",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 2
+    }
   },
   {
     "id": "m61",

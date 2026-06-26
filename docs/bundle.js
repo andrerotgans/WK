@@ -882,7 +882,10 @@ window.WK = {
       "away": "Ivoorkust",
       "homeFlag": "🇨🇼",
       "awayFlag": "🇨🇮",
-      "result": null
+      "result": {
+        "home": 0,
+        "away": 2
+      }
     },
     {
       "id": "m56",
@@ -893,7 +896,10 @@ window.WK = {
       "away": "Duitsland",
       "homeFlag": "🇪🇨",
       "awayFlag": "🇩🇪",
-      "result": null
+      "result": {
+        "home": 2,
+        "away": 1
+      }
     },
     {
       "id": "m57",
@@ -904,7 +910,10 @@ window.WK = {
       "away": "Zweden",
       "homeFlag": "🇯🇵",
       "awayFlag": "🇸🇪",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "m58",
@@ -915,7 +924,10 @@ window.WK = {
       "away": "Nederland",
       "homeFlag": "🇹🇳",
       "awayFlag": "🇳🇱",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 3
+      }
     },
     {
       "id": "m59",
@@ -926,7 +938,10 @@ window.WK = {
       "away": "Australië",
       "homeFlag": "🇵🇾",
       "awayFlag": "🇦🇺",
-      "result": null
+      "result": {
+        "home": 0,
+        "away": 0
+      }
     },
     {
       "id": "m60",
@@ -937,7 +952,10 @@ window.WK = {
       "away": "Verenigde Staten",
       "homeFlag": "🇹🇷",
       "awayFlag": "🇺🇸",
-      "result": null
+      "result": {
+        "home": 3,
+        "away": 2
+      }
     },
     {
       "id": "m61",
@@ -2556,5 +2574,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-25T09:01:10"
+  "generatedAt": "2026-06-26T08:36:40"
 };
