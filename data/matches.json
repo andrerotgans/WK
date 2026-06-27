@@ -848,7 +848,10 @@
     "away": "Irak",
     "homeFlag": "🇸🇳",
     "awayFlag": "🇮🇶",
-    "result": null
+    "result": {
+      "home": 5,
+      "away": 0
+    }
   },
   {
     "id": "m62",
@@ -859,7 +862,10 @@
     "away": "Frankrijk",
     "homeFlag": "🇳🇴",
     "awayFlag": "🇫🇷",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 4
+    }
   },
   {
     "id": "m63",
@@ -870,7 +876,10 @@
     "away": "Spanje",
     "homeFlag": "🇺🇾",
     "awayFlag": "🇪🇸",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 1
+    }
   },
   {
     "id": "m64",
@@ -881,7 +890,10 @@
     "away": "Saoedie-Arabië",
     "homeFlag": "🇨🇻",
     "awayFlag": "🇸🇦",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m65",
@@ -892,7 +904,10 @@
     "away": "België",
     "homeFlag": "🇳🇿",
     "awayFlag": "🇧🇪",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 5
+    }
   },
   {
     "id": "m66",
@@ -903,7 +918,10 @@
     "away": "Iran",
     "homeFlag": "🇪🇬",
     "awayFlag": "🇮🇷",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "m67",
