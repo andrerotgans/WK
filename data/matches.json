@@ -932,7 +932,10 @@
     "away": "Ghana",
     "homeFlag": "🇭🇷",
     "awayFlag": "🇬🇭",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "m68",
@@ -943,7 +946,10 @@
     "away": "Engeland",
     "homeFlag": "🇵🇦",
     "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 2
+    }
   },
   {
     "id": "m69",
@@ -954,7 +960,10 @@
     "away": "Oezbekistan",
     "homeFlag": "🇨🇩",
     "awayFlag": "🇺🇿",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 1
+    }
   },
   {
     "id": "m70",
@@ -965,7 +974,10 @@
     "away": "Portugal",
     "homeFlag": "🇨🇴",
     "awayFlag": "🇵🇹",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   },
   {
     "id": "m71",
@@ -976,7 +988,10 @@
     "away": "Argentinië",
     "homeFlag": "🇯🇴",
     "awayFlag": "🇦🇷",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 3
+    }
   },
   {
     "id": "m72",
@@ -987,6 +1002,9 @@
     "away": "Oostenrijk",
     "homeFlag": "🇩🇿",
     "awayFlag": "🇦🇹",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 3
+    }
   }
 ]
