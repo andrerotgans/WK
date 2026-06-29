@@ -1,7 +1,11 @@
 # WK Voetbal 2026 — Familiepoule
 
-Interactieve poule-site voor de groepsfase van het WK 2026. De stand van alle
-deelnemers wordt **live** berekend uit de ingevoerde uitslagen.
+Interactieve poule-site voor het WK 2026 (groepsfase + knock-out). De stand van
+alle deelnemers wordt **live** berekend uit de ingevoerde uitslagen.
+
+Knock-out: voorspellingen per ronde, zelfde puntentelling als de groepsfase. De
+te scoren uitslag = stand na 90 min + verlenging; strafschoppen tellen niet voor
+de punten (wel voor wie doorgaat). Knock-outduels hebben een id als `k01`.
 
 ## Snel bekijken (lokaal)
 

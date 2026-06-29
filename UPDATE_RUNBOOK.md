@@ -45,4 +45,6 @@ invullen, zodat de stand van de poule klopt.
 ## Veiligheidsregels
 - Nooit een al ingevulde uitslag overschrijven tenzij die aantoonbaar fout was.
 - Geen uitslagen gokken. Liever een wedstrijd een dag later invullen dan fout.
-- Alleen groepsfase-wedstrijden (dit bestand bevat de 1e ronde).
+- De database bevat nu de groepsfase én de knock-outfase. Knock-outduels hebben een id als `k01` en een ronde-tag (R32, R16, …); `set_result.py` werkt er identiek mee (op id of op teamnamen).
+- **Knock-out:** de te scoren uitslag = stand na 90 min + eventuele verlenging. Strafschoppen tellen NIET voor de punten (ze bepalen wel wie doorgaat). Een knock-outduel mag dus als gelijkspel worden ingevuld (bv. 1-1, daarna penalty's).
+- Latere knock-outrondes (R16, kwart, halve, finale) worden pas toegevoegd als de voorspellingen er zijn; vul alleen duels in die al in de database staan.

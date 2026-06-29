@@ -85,7 +85,8 @@ def main():
     if args.list_todo:
         for m in matches:
             if not (m.get("result") and isinstance(m["result"].get("home"), int)):
-                print(f'{m["id"]}  [{m["group"]}]  {m["datetimeLabel"]:>16}  {m["home"]} - {m["away"]}')
+                tag = m["round"] if m.get("phase") == "knockout" else "groep " + m.get("group", "?")
+                print(f'{m["id"]}  [{tag:>6}]  {m["datetimeLabel"]:>16}  {m["home"]} - {m["away"]}')
         return
 
     changed = False

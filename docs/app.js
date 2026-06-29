@@ -39,6 +39,15 @@ function topscorerResult() {
   return localBonus.topscorer || [];
 }
 
+// Onderscheid groepsfase / knock-out.
+const isKO = (m) => m.phase === "knockout";
+const GROUP_MATCHES = MATCHES.filter(m => !isKO(m));
+const KO_MATCHES = MATCHES.filter(isKO);
+// Volgorde van de knock-outrondes (voor weergave).
+const KO_ROUND_ORDER = ["R32", "R16", "QF", "SF", "3P", "F"];
+function matchTag(m) { return isKO(m) ? (m.roundLabel || m.round) : "Groep " + m.group; }
+function shortTag(m) { return isKO(m) ? m.round : m.group; }
+
 // ---------- Berekeningen ----------
 function standingsForGroup(letter) {
   const teams = CFG.groups[letter];
@@ -61,13 +70,16 @@ function computeLeaderboard() {
   const champ = championResult();
   const tops = topscorerResult();
   const board = PARTS.map(name => {
-    let groupPts = 0, played = 0, exact = 0;
+    let groupPts = 0, koPts = 0, played = 0, exact = 0;
     MATCHES.forEach(m => {
       const r = resultOf(m);
       if (!r) return;
+      const pred = PREDS[m.id] ? PREDS[m.id][name] : null;
+      const pts = scoreMatch(parseScore(pred), r);
+      // tel deze wedstrijd alleen mee als de deelnemer hem voorspeld heeft
+      if (pred == null) return;
       played++;
-      const pts = scoreMatch(parseScore(PREDS[m.id][name]), r);
-      groupPts += pts;
+      if (isKO(m)) koPts += pts; else groupPts += pts;
       if (pts === CFG.scoring.exact) exact++;
     });
     let bonusPts = 0;
@@ -77,7 +89,7 @@ function computeLeaderboard() {
     if (tops.length && BONUS.topscorer[name] &&
         tops.some(t => String(t).trim().toLowerCase() === String(BONUS.topscorer[name]).trim().toLowerCase()))
       bonusPts += CFG.scoring.topscorer;
-    return { name, groupPts, bonusPts, total: groupPts + bonusPts, played, exact };
+    return { name, groupPts, koPts, bonusPts, total: groupPts + koPts + bonusPts, played, exact };
   });
   board.sort((a, b) => b.total - a.total || b.exact - a.exact || a.name.localeCompare(b.name));
   // rang met gedeelde posities
@@ -121,7 +133,7 @@ function viewKlassement() {
         <div class="lb-rank">${medal}</div>
         <div>
           <div class="lb-name">${esc(row.name)}</div>
-          <div class="lb-sub">${row.exact}× exact · bonus ${row.bonusPts} pt</div>
+          <div class="lb-sub">groep ${row.groupPts}${row.koPts ? " · knock-out " + row.koPts : ""}${row.bonusPts ? " · bonus " + row.bonusPts : ""} · ${row.exact}× exact</div>
         </div>
         <div class="lb-points">${row.total}<small>punten</small></div>
       </li>`);
@@ -165,7 +177,7 @@ function viewWedstrijden() {
   groups.forEach(g => filters.appendChild(mk("g"+g, "Groep "+g)));
   v.appendChild(filters);
 
-  const list = MATCHES.filter(m => {
+  const list = GROUP_MATCHES.filter(m => {
     const r = resultOf(m);
     if (matchFilter === "todo") return !r;
     if (matchFilter === "done") return !!r;
@@ -190,7 +202,7 @@ function matchCard(m) {
         <div class="match-center">
           ${scoreHtml}
           <div class="match-date">${fmtDate(m.datetime, m.datetimeLabel)}</div>
-          <div class="grouptag">Groep ${m.group}</div>
+          <div class="grouptag">${matchTag(m)}</div>
         </div>
         <div class="match-team away"><span class="flag">${m.awayFlag}</span><span>${esc(m.away)}</span></div>
       </div>
@@ -229,6 +241,31 @@ function fillMatchDetail(box, m) {
   });
   if (!r) box.appendChild(el(`<p class="hint" style="padding:4px 10px">Nog niet gespeeld — voorspellingen:</p>`));
   box.appendChild(grid);
+}
+
+function viewKnockout() {
+  const v = el(`<div></div>`);
+  if (!KO_MATCHES.length) {
+    v.appendChild(el(`<p class="hint">De knock-outfase is nog niet beschikbaar.</p>`));
+    return v;
+  }
+  v.appendChild(el(`<p class="hint">Voorspellingen per ronde, zelfde puntentelling als de groepsfase. De uitslag telt ná 90 min + verlenging; strafschoppen bepalen wie doorgaat maar tellen niet voor de punten.</p>`));
+
+  // groepeer per ronde in vaste volgorde
+  const byRound = {};
+  KO_MATCHES.forEach(m => { (byRound[m.round] = byRound[m.round] || []).push(m); });
+  const rounds = KO_ROUND_ORDER.filter(r => byRound[r]);
+  Object.keys(byRound).forEach(r => { if (!rounds.includes(r)) rounds.push(r); });
+
+  rounds.forEach(r => {
+    const ms = byRound[r];
+    const label = ms[0].roundLabel || r;
+    const done = ms.filter(m => resultOf(m)).length;
+    v.appendChild(el(`<div class="section-title" style="display:flex;justify-content:space-between;align-items:baseline">
+      <span>${esc(label)}</span><span style="text-transform:none;font-weight:600">${done}/${ms.length} gespeeld</span></div>`));
+    ms.forEach(m => v.appendChild(matchCard(m)));
+  });
+  return v;
 }
 
 function viewGroepen() {
@@ -353,7 +390,7 @@ function viewInvoeren() {
           <input type="number" min="0" class="in-a" value="${Number.isInteger(r.away)?r.away:""}" ${fileLocked?"disabled":""}>
         </div>
         <div class="entry-team away"><span class="flag">${m.awayFlag}</span> ${esc(m.away)}</div>
-        <div class="entry-status ${fileLocked?"saved":""}">${fileLocked?"in database":(localResults[m.id]?"opgeslagen":"")} <span class="grouptag">${m.group}</span></div>
+        <div class="entry-status ${fileLocked?"saved":""}">${fileLocked?"in database":(localResults[m.id]?"opgeslagen":"")} <span class="grouptag">${shortTag(m)}</span></div>
       </div>`);
     if (!fileLocked) {
       const h = row.querySelector(".in-h"), a = row.querySelector(".in-a");
@@ -395,19 +432,22 @@ function openParticipant(name) {
   const content = document.getElementById("modal-content");
   const board = computeLeaderboard();
   const me = board.find(b => b.name === name);
-  let rowsHtml = "";
-  MATCHES.forEach(m => {
+  const renderRows = (list) => list.map(m => {
     const r = resultOf(m);
-    const raw = PREDS[m.id][name];
-    const pts = r ? scoreMatch(parseScore(raw), r) : null;
-    rowsHtml += `
+    const raw = PREDS[m.id] ? PREDS[m.id][name] : null;
+    const pts = (r && raw != null) ? scoreMatch(parseScore(raw), r) : null;
+    return `
       <div class="detail-row">
         <span class="dmatch">${m.homeFlag} ${esc(m.home)} – ${esc(m.away)} ${m.awayFlag}
-          <span class="grouptag">${m.group}</span></span>
+          <span class="grouptag">${shortTag(m)}</span></span>
         <span class="dpred">${raw?esc(raw):"—"}${r?` · <b>${r.home}–${r.away}</b>`:""}</span>
-        <span>${r?`<span class="pts ${ptsClass(pts)}">${pts}</span>`:`<span class="hint">—</span>`}</span>
+        <span>${(r && raw != null)?`<span class="pts ${ptsClass(pts)}">${pts}</span>`:`<span class="hint">—</span>`}</span>
       </div>`;
-  });
+  }).join("");
+  const koRowsHtml = KO_MATCHES.length
+    ? `<div class="section-title" style="margin:16px 0 0">Knock-out</div>${renderRows(KO_MATCHES)}`
+    : "";
+  const groupRowsHtml = `<div class="section-title" style="margin:16px 0 0">Groepsfase</div>${renderRows(GROUP_MATCHES)}`;
   const champHit = champ && String(BONUS.champion[name]).trim().toUpperCase() === String(champ).trim().toUpperCase();
   const topHit = tops.length && tops.some(t => String(t).trim().toLowerCase() === String(BONUS.topscorer[name]).trim().toLowerCase());
   content.innerHTML = `
@@ -416,13 +456,14 @@ function openParticipant(name) {
     <div class="card" style="padding:12px 16px;margin:14px 0">
       <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px">
         <span>Groepsfase: <b>${me.groupPts}</b></span>
+        <span>Knock-out: <b>${me.koPts}</b></span>
         <span>Bonus: <b>${me.bonusPts}</b></span>
         <span>Kampioen: ${esc(BONUS.champion[name]||"—")} ${champHit?"✓":""}</span>
         <span>Topscorer: ${esc(BONUS.topscorer[name]||"—")} ${topHit?"✓":""}</span>
       </div>
     </div>
-    <div class="section-title" style="margin:6px 0 0">Per wedstrijd</div>
-    ${rowsHtml}`;
+    ${koRowsHtml}
+    ${groupRowsHtml}`;
   document.getElementById("modal").classList.remove("hidden");
 }
 
@@ -431,7 +472,7 @@ let currentTab = "klassement";
 function render() {
   const view = document.getElementById("view");
   view.innerHTML = "";
-  const map = { klassement: viewKlassement, wedstrijden: viewWedstrijden, groepen: viewGroepen, bonus: viewBonus, invoeren: viewInvoeren };
+  const map = { klassement: viewKlassement, wedstrijden: viewWedstrijden, knockout: viewKnockout, groepen: viewGroepen, bonus: viewBonus, invoeren: viewInvoeren };
   view.appendChild((map[currentTab] || viewKlassement)());
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === currentTab));
   updateBadge();
