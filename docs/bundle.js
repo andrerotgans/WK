@@ -3,7 +3,6 @@ window.WK = {
     "title": "WK Voetbal 2026 — Familiepoule",
     "tournamentStart": "2026-06-11",
     "participants": [
-      "Simon",
       "Ann",
       "Marco",
       "Anna",
@@ -1128,7 +1127,6 @@ window.WK = {
   ],
   "predictions": {
     "m01": {
-      "Simon": "1-1",
       "Ann": "1-2",
       "Marco": "2-0",
       "Anna": "3-0",
@@ -1148,7 +1146,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m02": {
-      "Simon": "2-0",
       "Ann": "1-0",
       "Marco": "0-0",
       "Anna": "2-1",
@@ -1168,7 +1165,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m03": {
-      "Simon": "2-1",
       "Ann": "0-1",
       "Marco": "2-2",
       "Anna": "2-1",
@@ -1188,7 +1184,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m04": {
-      "Simon": "3-1",
       "Ann": "4-1",
       "Marco": "1-0",
       "Anna": "1-0",
@@ -1208,7 +1203,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m05": {
-      "Simon": "1-1",
       "Ann": "1-1",
       "Marco": "0-4",
       "Anna": "3-0",
@@ -1228,7 +1222,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m06": {
-      "Simon": "3-1",
       "Ann": "4-1",
       "Marco": "2-1",
       "Anna": "2-1",
@@ -1248,7 +1241,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m07": {
-      "Simon": "1-1",
       "Ann": "1-0",
       "Marco": "0-3",
       "Anna": "0-2",
@@ -1268,7 +1260,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m08": {
-      "Simon": "3-0",
       "Ann": "2-1",
       "Marco": "1-1",
       "Anna": "0-2",
@@ -1288,7 +1279,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m09": {
-      "Simon": "3-1",
       "Ann": "3-1",
       "Marco": "4-0",
       "Anna": "6-0",
@@ -1308,7 +1298,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m10": {
-      "Simon": "3-1",
       "Ann": "3-1",
       "Marco": "1-1",
       "Anna": "3-1",
@@ -1328,7 +1317,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m11": {
-      "Simon": "1-0",
       "Ann": "1-0",
       "Marco": "3-0",
       "Anna": "1-1",
@@ -1348,7 +1336,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m12": {
-      "Simon": "1-2",
       "Ann": "1-2",
       "Marco": "3-0",
       "Anna": "2-0",
@@ -1368,7 +1355,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m13": {
-      "Simon": "3-1",
       "Ann": "1-4",
       "Marco": "6-0",
       "Anna": "6-0",
@@ -1388,7 +1374,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m14": {
-      "Simon": "2-0",
       "Ann": "2-0",
       "Marco": "2-1",
       "Anna": "2-0",
@@ -1408,7 +1393,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m15": {
-      "Simon": "0-3",
       "Ann": "4-0",
       "Marco": "0-3",
       "Anna": "0-3",
@@ -1428,7 +1412,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m16": {
-      "Simon": "1-0",
       "Ann": "0-1",
       "Marco": "1-0",
       "Anna": "2-1",
@@ -1448,7 +1431,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m17": {
-      "Simon": "3-1",
       "Ann": "2-2",
       "Marco": "3-1",
       "Anna": "3-0",
@@ -1468,7 +1450,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m18": {
-      "Simon": "2-0",
       "Ann": "0-1",
       "Marco": "1-1",
       "Anna": "2-0",
@@ -1488,7 +1469,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m19": {
-      "Simon": "4-0",
       "Ann": "4-0",
       "Marco": "1-0",
       "Anna": "2-0",
@@ -1508,7 +1488,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m20": {
-      "Simon": "0-1",
       "Ann": "0-1",
       "Marco": "2-0",
       "Anna": "3-0",
@@ -1528,7 +1507,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m21": {
-      "Simon": "3-1",
       "Ann": "3-0",
       "Marco": "4-0",
       "Anna": "3-0",
@@ -1548,7 +1526,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m22": {
-      "Simon": "2-2",
       "Ann": "2-2",
       "Marco": "1-1",
       "Anna": "1-1",
@@ -1568,7 +1545,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m23": {
-      "Simon": "0-1",
       "Ann": "0-1",
       "Marco": "2-0",
       "Anna": "3-2",
@@ -1588,7 +1564,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m24": {
-      "Simon": "0-2",
       "Ann": "0-1",
       "Marco": "0-4",
       "Anna": "0-3",
@@ -1608,7 +1583,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m25": {
-      "Simon": "1-2",
       "Ann": "0-2",
       "Marco": "0-0",
       "Anna": "2-1",
@@ -1628,7 +1602,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m26": {
-      "Simon": "3-1",
       "Ann": "3-1",
       "Marco": "2-0",
       "Anna": "4-0",
@@ -1648,7 +1621,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m27": {
-      "Simon": "4-1",
       "Ann": "4-1",
       "Marco": "2-0",
       "Anna": "3-2",
@@ -1668,7 +1640,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m28": {
-      "Simon": "2-0",
       "Ann": "3-1",
       "Marco": "2-1",
       "Anna": "1-0",
@@ -1688,7 +1659,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m29": {
-      "Simon": "3-3",
       "Ann": "3-3",
       "Marco": "2-1",
       "Anna": "2-0",
@@ -1708,7 +1678,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m30": {
-      "Simon": "0-1",
       "Ann": "0-1",
       "Marco": "1-2",
       "Anna": "1-3",
@@ -1728,7 +1697,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m31": {
-      "Simon": "0-2",
       "Ann": "0-2",
       "Marco": "5-0",
       "Anna": "5-0",
@@ -1748,7 +1716,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m32": {
-      "Simon": "2-2",
       "Ann": "2-0",
       "Marco": "0-0",
       "Anna": "3-1",
@@ -1768,7 +1735,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m33": {
-      "Simon": "2-3",
       "Ann": "2-3",
       "Marco": "3-0",
       "Anna": "2-0",
@@ -1788,7 +1754,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m34": {
-      "Simon": "3-3",
       "Ann": "3-3",
       "Marco": "1-0",
       "Anna": "2-0",
@@ -1808,7 +1773,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m35": {
-      "Simon": "2-1",
       "Ann": "2-1",
       "Marco": "1-1",
       "Anna": "3-1",
@@ -1828,7 +1792,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m36": {
-      "Simon": "3-3",
       "Ann": "3-3",
       "Marco": "0-4",
       "Anna": "0-2",
@@ -1848,7 +1811,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m37": {
-      "Simon": "3-1",
       "Ann": "3-1",
       "Marco": "4-0",
       "Anna": "2-0",
@@ -1868,7 +1830,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m38": {
-      "Simon": "2-2",
       "Ann": "2-2",
       "Marco": "2-0",
       "Anna": "3-0",
@@ -1888,7 +1849,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m39": {
-      "Simon": "0-3",
       "Ann": "0-1",
       "Marco": "4-0",
       "Anna": "3-0",
@@ -1908,7 +1868,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m40": {
-      "Simon": "0-1",
       "Ann": "0-1",
       "Marco": "1-2",
       "Anna": "1-1",
@@ -1928,7 +1887,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m41": {
-      "Simon": "0-2",
       "Ann": "1-4",
       "Marco": "2-0",
       "Anna": "2-1",
@@ -1948,7 +1906,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m42": {
-      "Simon": "2-2",
       "Ann": "2-2",
       "Marco": "1-1",
       "Anna": "2-0",
@@ -1968,7 +1925,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m43": {
-      "Simon": "2-1",
       "Ann": "2-1",
       "Marco": "1-1",
       "Anna": "1-0",
@@ -1988,7 +1944,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m44": {
-      "Simon": "0-2",
       "Ann": "0-2",
       "Marco": "1-3",
       "Anna": "1-1",
@@ -2008,7 +1963,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m45": {
-      "Simon": "0-1",
       "Ann": "0-1",
       "Marco": "4-0",
       "Anna": "2-0",
@@ -2028,7 +1982,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m46": {
-      "Simon": "3-1",
       "Ann": "3-2",
       "Marco": "0-1",
       "Anna": "3-0",
@@ -2048,7 +2001,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m47": {
-      "Simon": "3-0",
       "Ann": "2-0",
       "Marco": "0-1",
       "Anna": "0-2",
@@ -2068,7 +2020,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m48": {
-      "Simon": "2-0",
       "Ann": "2-0",
       "Marco": "3-0",
       "Anna": "2-0",
@@ -2088,7 +2039,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m49": {
-      "Simon": "2-3",
       "Ann": "2-2",
       "Marco": "2-1",
       "Anna": "3-1",
@@ -2108,7 +2058,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m50": {
-      "Simon": "1-2",
       "Ann": "1-2",
       "Marco": "2-0",
       "Anna": "2-2",
@@ -2128,7 +2077,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m51": {
-      "Simon": "0-1",
       "Ann": "2-1",
       "Marco": "3-0",
       "Anna": "4-0",
@@ -2148,7 +2096,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m52": {
-      "Simon": "1-3",
       "Ann": "1-1",
       "Marco": "1-2",
       "Anna": "0-3",
@@ -2168,7 +2115,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m53": {
-      "Simon": "0-1",
       "Ann": "1-1",
       "Marco": "0-1",
       "Anna": "0-0",
@@ -2188,7 +2134,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m54": {
-      "Simon": "2-2",
       "Ann": "2-2",
       "Marco": "1-1",
       "Anna": "1-1",
@@ -2208,7 +2153,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m55": {
-      "Simon": "2-1",
       "Ann": "1-0",
       "Marco": "1-3",
       "Anna": "0-3",
@@ -2228,7 +2172,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m56": {
-      "Simon": "1-1",
       "Ann": "0-3",
       "Marco": "0-4",
       "Anna": "0-3",
@@ -2248,7 +2191,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m57": {
-      "Simon": "0-2",
       "Ann": "0-2",
       "Marco": "2-0",
       "Anna": "2-2",
@@ -2268,7 +2210,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m58": {
-      "Simon": "1-2",
       "Ann": "2-1",
       "Marco": "0-4",
       "Anna": "0-3",
@@ -2288,7 +2229,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m59": {
-      "Simon": "2-3",
       "Ann": "2-1",
       "Marco": "0-0",
       "Anna": "2-2",
@@ -2308,7 +2248,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m60": {
-      "Simon": "1-3",
       "Ann": "1-1",
       "Marco": "0-1",
       "Anna": "1-0",
@@ -2328,7 +2267,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m61": {
-      "Simon": "3-1",
       "Ann": "3-0",
       "Marco": "1-1",
       "Anna": "0-0",
@@ -2348,7 +2286,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m62": {
-      "Simon": "0-2",
       "Ann": "0-1",
       "Marco": "2-2",
       "Anna": "1-2",
@@ -2368,7 +2305,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m63": {
-      "Simon": "0-3",
       "Ann": "0-3",
       "Marco": "1-2",
       "Anna": "1-2",
@@ -2388,7 +2324,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m64": {
-      "Simon": "4-2",
       "Ann": "4-2",
       "Marco": "1-1",
       "Anna": "1-2",
@@ -2408,7 +2343,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m65": {
-      "Simon": "0-2",
       "Ann": "0-2",
       "Marco": "0-2",
       "Anna": "0-4",
@@ -2428,7 +2362,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m66": {
-      "Simon": "2-2",
       "Ann": "2-2",
       "Marco": "1-2",
       "Anna": "2-1",
@@ -2448,7 +2381,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m67": {
-      "Simon": "1-1",
       "Ann": "0-1",
       "Marco": "1-1",
       "Anna": "2-0",
@@ -2468,7 +2400,6 @@ window.WK = {
       "Thijs / Esther": "2-0"
     },
     "m68": {
-      "Simon": "1-4",
       "Ann": "1-4",
       "Marco": "0-2",
       "Anna": "0-4",
@@ -2488,7 +2419,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m69": {
-      "Simon": "1-2",
       "Ann": "1-0",
       "Marco": "0-0",
       "Anna": "1-2",
@@ -2508,7 +2438,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m70": {
-      "Simon": "0-2",
       "Ann": "1-0",
       "Marco": "2-2",
       "Anna": "1-2",
@@ -2528,7 +2457,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m71": {
-      "Simon": "0-2",
       "Ann": "0-2",
       "Marco": "0-4",
       "Anna": "0-4",
@@ -2548,7 +2476,6 @@ window.WK = {
       "Thijs / Esther": "0-2"
     },
     "m72": {
-      "Simon": "1-1",
       "Ann": "1-1",
       "Marco": "1-1",
       "Anna": "0-2",
@@ -2570,7 +2497,6 @@ window.WK = {
   },
   "bonusPredictions": {
     "champion": {
-      "Simon": "ARG",
       "Ann": "ARG",
       "Marco": "BRA",
       "Anna": "NED",
@@ -2590,7 +2516,6 @@ window.WK = {
       "Thijs / Esther": "NED"
     },
     "topscorer": {
-      "Simon": "Messi",
       "Ann": "Messi",
       "Marco": "Mbappé",
       "Anna": "Mbappé",
@@ -2610,5 +2535,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-28T13:34:05"
+  "generatedAt": "2026-06-29T09:58:46"
 };
