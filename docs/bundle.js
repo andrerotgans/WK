@@ -1151,7 +1151,10 @@ window.WK = {
       "away": "Japan",
       "homeFlag": "🇧🇷",
       "awayFlag": "🇯🇵",
-      "result": null
+      "result": {
+        "home": 2,
+        "away": 1
+      }
     },
     {
       "id": "k03",
@@ -1164,7 +1167,10 @@ window.WK = {
       "away": "Paraguay",
       "homeFlag": "🇩🇪",
       "awayFlag": "🇵🇾",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "k04",
@@ -1177,7 +1183,10 @@ window.WK = {
       "away": "Marokko",
       "homeFlag": "🇳🇱",
       "awayFlag": "🇲🇦",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "k05",
@@ -3050,5 +3059,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-06-29T10:15:24"
+  "generatedAt": "2026-06-30T08:22:18"
 };

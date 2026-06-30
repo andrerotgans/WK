@@ -1034,7 +1034,10 @@
     "away": "Japan",
     "homeFlag": "🇧🇷",
     "awayFlag": "🇯🇵",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "k03",
@@ -1047,7 +1050,10 @@
     "away": "Paraguay",
     "homeFlag": "🇩🇪",
     "awayFlag": "🇵🇾",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "k04",
@@ -1060,7 +1066,10 @@
     "away": "Marokko",
     "homeFlag": "🇳🇱",
     "awayFlag": "🇲🇦",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 1
+    }
   },
   {
     "id": "k05",
