@@ -1082,7 +1082,10 @@
     "away": "Noorwegen",
     "homeFlag": "🇨🇮",
     "awayFlag": "🇳🇴",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 2
+    }
   },
   {
     "id": "k06",
@@ -1095,7 +1098,10 @@
     "away": "Zweden",
     "homeFlag": "🇫🇷",
     "awayFlag": "🇸🇪",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 0
+    }
   },
   {
     "id": "k07",
@@ -1108,7 +1114,10 @@
     "away": "Ecuador",
     "homeFlag": "🇲🇽",
     "awayFlag": "🇪🇨",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "k08",
