@@ -1130,7 +1130,10 @@
     "away": "Congo-Kinshasa",
     "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "awayFlag": "🇨🇩",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "k09",

@@ -1247,7 +1247,10 @@ window.WK = {
       "away": "Congo-Kinshasa",
       "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       "awayFlag": "🇨🇩",
-      "result": null
+      "result": {
+        "home": 2,
+        "away": 1
+      }
     },
     {
       "id": "k09",
@@ -3068,5 +3071,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-01T09:28:23"
+  "generatedAt": "2026-07-01T21:31:07"
 };
