@@ -1178,7 +1178,10 @@
     "away": "Oostenrijk",
     "homeFlag": "🇪🇸",
     "awayFlag": "🇦🇹",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 0
+    }
   },
   {
     "id": "k12",
