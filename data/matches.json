@@ -1146,7 +1146,10 @@
     "away": "Senegal",
     "homeFlag": "🇧🇪",
     "awayFlag": "🇸🇳",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 2
+    }
   },
   {
     "id": "k10",
@@ -1159,7 +1162,10 @@
     "away": "Bosnië en Herzegovina",
     "homeFlag": "🇺🇸",
     "awayFlag": "🇧🇦",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "k11",
