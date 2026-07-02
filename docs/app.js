@@ -100,6 +100,34 @@ function computeLeaderboard() {
 
 const playedCount = () => MATCHES.filter(m => resultOf(m)).length;
 
+// Cumulatieve punten (en rang) van elke deelnemer na elke gespeelde wedstrijd,
+// op volgorde van speeldatum. Bonuspunten (kampioen/topscorer) horen niet bij
+// één wedstrijd-moment en tellen hier niet mee.
+function computeStandingsOverTime() {
+  const played = MATCHES.filter(m => resultOf(m))
+    .slice().sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+  const cum = {}; PARTS.forEach(p => cum[p] = 0);
+  const labels = [], points = {}, ranks = {};
+  PARTS.forEach(p => { points[p] = []; ranks[p] = []; });
+  const koIdx = played.findIndex(isKO);
+  played.forEach(m => {
+    const r = resultOf(m);
+    PARTS.forEach(name => {
+      const raw = PREDS[m.id] ? PREDS[m.id][name] : null;
+      cum[name] += scoreMatch(parseScore(raw), r);
+    });
+    const parts = (m.datetimeLabel || "").split(" ");
+    labels.push(parts.length >= 2 ? parts[0] + " " + parts[1] : (m.datetimeLabel || m.id));
+    const ranked = PARTS.slice().sort((a, b) => cum[b] - cum[a] || a.localeCompare(b));
+    PARTS.forEach(name => {
+      points[name].push(cum[name]);
+      ranks[name].push(ranked.indexOf(name) + 1);
+    });
+  });
+  const order = PARTS.slice().sort((a, b) => cum[b] - cum[a] || a.localeCompare(b));
+  return { labels, order, points, ranks, phaseSplit: koIdx === -1 ? played.length : koIdx };
+}
+
 // ---------- Helpers ----------
 const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
@@ -301,6 +329,175 @@ function viewGroepen() {
   return v;
 }
 
+// ---------- Verloop (stand door de tijd) ----------
+const VERLOOP_TOP_COLORS = ["#2ee6a6", "#4f9dff", "#ffd23f", "#9d8cff", "#ff6b6b", "#ff9f43"];
+const VERLOOP_GRAY = "rgba(147,163,196,0.55)";
+const VERLOOP_GRAY_DIM = "rgba(147,163,196,0.28)";
+let verloopMode = "points";
+let verloopHighlight = null;
+let verloopChart = null;
+
+function hexToRgba(hex, a) {
+  const v = hex.replace("#", "");
+  const r = parseInt(v.substring(0, 2), 16), g = parseInt(v.substring(2, 4), 16), b = parseInt(v.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function viewVerloop() {
+  const v = el(`<div></div>`);
+  const data = computeStandingsOverTime();
+  if (!data.labels.length) {
+    v.appendChild(el(`<p class="hint">Nog geen wedstrijden gespeeld — er is nog geen verloop te tonen.</p>`));
+    return v;
+  }
+  v.appendChild(el(`
+    <div class="lb-head">
+      <div>
+        <h2>Verloop van de stand</h2>
+        <p class="lb-meta">${playedCount()} van ${MATCHES.length} wedstrijden gespeeld · cumulatieve punten na elke wedstrijd</p>
+      </div>
+      <div class="verloop-toggle" id="verloop-toggle">
+        <button data-mode="points" class="${verloopMode === "points" ? "active" : ""}">Punten</button>
+        <button data-mode="rank" class="${verloopMode === "rank" ? "active" : ""}">Positie</button>
+      </div>
+    </div>`));
+
+  const card = el(`<div class="card" style="padding:18px"></div>`);
+  const legend = el(`<div class="verloop-legend"></div>`);
+  const chartWrap = el(`<div class="verloop-chart-wrap"><canvas id="verloop-canvas" role="img" aria-label="Lijngrafiek van de cumulatieve punten van alle deelnemers door het toernooi heen"></canvas></div>`);
+  card.appendChild(legend);
+  card.appendChild(chartWrap);
+  card.appendChild(el(`
+    <div class="verloop-phase-note">
+      <span>← groepsfase</span><span>gestippelde lijn = start knock-out</span><span>knock-out →</span>
+    </div>`));
+  v.appendChild(card);
+  v.appendChild(el(`<p class="hint" style="margin-top:12px">Klik een naam om die lijn uit te lichten. Bonuspunten (kampioen/topscorer) staan hier niet in — die horen niet bij één wedstrijd-moment.</p>`));
+
+  renderVerloopLegend(legend, data);
+  // canvas moet al in de echte DOM hangen voordat Chart.js 'm mag aanmaken
+  setTimeout(() => renderVerloopChart(chartWrap.querySelector("canvas"), data), 0);
+
+  v.querySelector("#verloop-toggle").addEventListener("click", e => {
+    const btn = e.target.closest("button");
+    if (!btn || btn.dataset.mode === verloopMode) return;
+    verloopMode = btn.dataset.mode;
+    v.querySelectorAll("#verloop-toggle button").forEach(b => b.classList.toggle("active", b.dataset.mode === verloopMode));
+    applyVerloopMode();
+  });
+
+  return v;
+}
+
+function renderVerloopLegend(container, data) {
+  container.innerHTML = "";
+  data.order.forEach((name, i) => {
+    const isTop = i < VERLOOP_TOP_COLORS.length;
+    const color = isTop ? VERLOOP_TOP_COLORS[i] : "var(--muted)";
+    const chip = el(`<span class="p-chip ${verloopHighlight === name ? "active" : ""}"><i style="background:${color}"></i>${i + 1}. ${esc(name)}</span>`);
+    chip.addEventListener("click", () => {
+      verloopHighlight = verloopHighlight === name ? null : name;
+      renderVerloopLegend(container, data);
+      applyVerloopHighlight();
+    });
+    container.appendChild(chip);
+  });
+}
+
+function renderVerloopChart(canvas, data) {
+  if (verloopChart) { verloopChart.destroy(); verloopChart = null; }
+  const datasets = data.order.map((name, i) => {
+    const isTop = i < VERLOOP_TOP_COLORS.length;
+    const color = isTop ? VERLOOP_TOP_COLORS[i] : VERLOOP_GRAY;
+    return {
+      label: name,
+      data: data.points[name],
+      borderColor: color, backgroundColor: color,
+      borderWidth: isTop ? 2.5 : 1.4,
+      pointRadius: 0, pointHitRadius: 8, tension: 0.15,
+      order: isTop ? 1 : 2,
+      _base: color, _topColor: isTop ? VERLOOP_TOP_COLORS[i] : null, _isTop: isTop,
+    };
+  });
+  const phaseLinePlugin = {
+    id: "verloopPhaseLine",
+    afterDraw(chart) {
+      const idx = data.phaseSplit;
+      const xScale = chart.scales.x, yScale = chart.scales.y;
+      if (!xScale || idx >= data.labels.length) return;
+      const x = xScale.getPixelForValue(idx);
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.strokeStyle = "rgba(234,240,251,0.35)";
+      ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, yScale.top); ctx.lineTo(x, yScale.bottom); ctx.stroke();
+      ctx.restore();
+    },
+  };
+  verloopChart = new Chart(canvas, {
+    type: "line",
+    data: { labels: data.labels, datasets },
+    plugins: [phaseLinePlugin],
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "nearest", intersect: true },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#1f2c45", borderColor: "#2a3a5a", borderWidth: 1,
+          titleColor: "#eaf0fb", bodyColor: "#eaf0fb", padding: 10, displayColors: true,
+          callbacks: {
+            label: item => verloopMode === "points"
+              ? `${item.dataset.label}: ${item.formattedValue} pt`
+              : `${item.dataset.label}: positie ${item.formattedValue}`,
+          },
+        },
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: "#93a3c4", font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 11 } },
+        y: { grid: { color: "rgba(147,163,196,0.12)" }, ticks: { color: "#93a3c4", font: { size: 10 } }, title: { display: true, color: "#93a3c4", font: { size: 11 } } },
+      },
+    },
+  });
+  applyVerloopMode(data);
+  applyVerloopHighlight();
+}
+
+function applyVerloopMode(data) {
+  if (!verloopChart) return;
+  if (!data) data = computeStandingsOverTime();
+  const y = verloopChart.options.scales.y;
+  verloopChart.data.datasets.forEach(ds => { ds.data = verloopMode === "points" ? data.points[ds.label] : data.ranks[ds.label]; });
+  if (verloopMode === "points") {
+    y.reverse = false; y.min = 0; y.max = undefined;
+    y.title.text = "punten";
+    y.ticks.callback = v => v / 1000 + "k";
+    y.ticks.stepSize = undefined;
+  } else {
+    y.reverse = true; y.min = 1; y.max = data.order.length;
+    y.title.text = "positie (1 = koploper)";
+    y.ticks.callback = v => Number.isInteger(v) ? v : "";
+    y.ticks.stepSize = 1;
+  }
+  verloopChart.update();
+}
+
+function applyVerloopHighlight() {
+  if (!verloopChart) return;
+  verloopChart.data.datasets.forEach(ds => {
+    if (verloopHighlight === null) {
+      ds.borderColor = ds._base; ds.borderWidth = ds._isTop ? 2.5 : 1.4; ds.order = ds._isTop ? 1 : 2;
+    } else if (ds.label === verloopHighlight) {
+      ds.borderColor = ds._isTop ? ds._topColor : "#eaf0fb"; ds.borderWidth = 3.5; ds.order = 0;
+    } else if (ds._isTop) {
+      ds.borderColor = hexToRgba(ds._topColor, 0.35); ds.borderWidth = 1.6; ds.order = 2;
+    } else {
+      ds.borderColor = VERLOOP_GRAY_DIM; ds.borderWidth = 1.2; ds.order = 3;
+    }
+  });
+  verloopChart.update();
+}
+
 function viewBonus() {
   const champ = championResult();
   const tops = topscorerResult();
@@ -472,7 +669,7 @@ let currentTab = "klassement";
 function render() {
   const view = document.getElementById("view");
   view.innerHTML = "";
-  const map = { klassement: viewKlassement, wedstrijden: viewWedstrijden, knockout: viewKnockout, groepen: viewGroepen, bonus: viewBonus, invoeren: viewInvoeren };
+  const map = { klassement: viewKlassement, wedstrijden: viewWedstrijden, knockout: viewKnockout, groepen: viewGroepen, verloop: viewVerloop, bonus: viewBonus, invoeren: viewInvoeren };
   view.appendChild((map[currentTab] || viewKlassement)());
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === currentTab));
   updateBadge();
