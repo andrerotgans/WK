@@ -94,6 +94,20 @@
       "Panama"
     ]
   },
+  "teamCodes": {
+    "MEX": "Mexico", "RSA": "Zuid-Afrika", "KOR": "Zuid-Korea", "CZE": "Tsjechië",
+    "CAN": "Canada", "QAT": "Qatar", "SUI": "Zwitserland", "BIH": "Bosnië en Herzegovina",
+    "BRA": "Brazilië", "MAR": "Marokko", "HAI": "Haïti", "SCO": "Schotland",
+    "USA": "Verenigde Staten", "AUS": "Australië", "PAR": "Paraguay", "TUR": "Turkije",
+    "GER": "Duitsland", "CUW": "Curaçao", "CIV": "Ivoorkust", "ECU": "Ecuador",
+    "NED": "Nederland", "JPN": "Japan", "TUN": "Tunesië", "SWE": "Zweden",
+    "BEL": "België", "EGY": "Egypte", "IRN": "Iran", "NZL": "Nieuw-Zeeland",
+    "SPA": "Spanje", "CPV": "Kaapverdië", "KSA": "Saoedie-Arabië", "URU": "Uruguay",
+    "FRA": "Frankrijk", "SEN": "Senegal", "NOR": "Noorwegen", "IRQ": "Irak",
+    "ARG": "Argentinië", "ALG": "Algerije", "AUT": "Oostenrijk", "JOR": "Jordanië",
+    "POR": "Portugal", "UZB": "Oezbekistan", "COL": "Colombia", "COD": "Congo-Kinshasa",
+    "ENG": "Engeland", "CRO": "Kroatië", "GHA": "Ghana", "PAN": "Panama"
+  },
   "scoring": {
     "exact": 200,
     "draw": 100,
