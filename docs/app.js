@@ -173,15 +173,32 @@ function computePredictionQuality() {
   });
 }
 
+// Vaste omvang van elke knock-outronde (32 teams bij de ronde van 32).
+// Nodig om ook rondes mee te tellen die nog niet in de database staan.
+const KO_ROUND_SIZES = { R32: 16, R16: 8, QF: 4, SF: 2, "3P": 1, F: 1 };
+
+// Aantal wedstrijden dat nog gespeeld moet worden tot het einde van het
+// toernooi: onafgewerkte wedstrijden die al in de database staan, plus
+// knock-outrondes die pas later worden toegevoegd (op basis van de vaste
+// bracket-omvang, want de indeling van bv. de kwartfinale is nu nog niet bekend).
+function remainingMatchCount() {
+  let remaining = MATCHES.filter(m => !resultOf(m)).length;
+  const presentRounds = new Set(KO_MATCHES.map(m => m.round));
+  KO_ROUND_ORDER.forEach(round => {
+    if (!presentRounds.has(round)) remaining += KO_ROUND_SIZES[round] || 0;
+  });
+  return remaining;
+}
+
 // Wie maakt (rekenkundig) nog kans op de poule: huidige stand + maximaal
-// haalbare punten uit nog te spelen wedstrijden in de database (alle exact
-// goed) + bonuspunten die nog niet vergeven zijn.
+// haalbare punten uit alle nog te spelen wedstrijden tot het einde van het
+// toernooi (alle exact goed) + bonuspunten die nog niet vergeven zijn.
 function computeTitleRace() {
   const board = computeLeaderboard();
   const leaderTotal = board.length ? board[0].total : 0;
   const champDecided = !!championResult();
   const topsDecided = topscorerResult().length > 0;
-  const remainingMatches = MATCHES.filter(m => !resultOf(m)).length;
+  const remainingMatches = remainingMatchCount();
   return board.map(row => {
     const pick = BONUS.champion[row.name];
     const pickTeam = CFG.teamCodes ? CFG.teamCodes[String(pick || "").trim().toUpperCase()] : null;
@@ -611,7 +628,7 @@ function viewStatistieken() {
 
   // ---- Titelrace ----
   v.appendChild(el(`<div class="section-title">Wie maakt nog kans op de poule?</div>`));
-  v.appendChild(el(`<p class="hint">Rekenkundig maximum: huidige punten + alle nog te spelen wedstrijden in de database exact goed voorspeld + bonuspunten die nog niet vergeven zijn. Latere knock-outrondes tellen pas mee zodra ze in de database staan.</p>`));
+  v.appendChild(el(`<p class="hint">Rekenkundig maximum: huidige punten + alle nog te spelen wedstrijden tot het einde van het toernooi exact goed voorspeld (ook rondes die nog niet in de database staan, op basis van de vaste bracket-omvang) + bonuspunten die nog niet vergeven zijn.</p>`));
   const race = computeTitleRace();
   const raceCard = el(`<div class="card bonus-card" style="margin-top:10px"><ul class="bonus-list"></ul></div>`);
   const raceList = raceCard.querySelector("ul");
