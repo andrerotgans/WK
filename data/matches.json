@@ -1194,7 +1194,10 @@
     "away": "Kroatië",
     "homeFlag": "🇵🇹",
     "awayFlag": "🇭🇷",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "k13",
@@ -1207,7 +1210,10 @@
     "away": "Algerije",
     "homeFlag": "🇨🇭",
     "awayFlag": "🇩🇿",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 0
+    }
   },
   {
     "id": "k14",
