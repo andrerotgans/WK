@@ -1393,7 +1393,10 @@ window.WK = {
       "away": "Egypte",
       "homeFlag": "🇦🇺",
       "awayFlag": "🇪🇬",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 1
+      }
     },
     {
       "id": "k15",
@@ -1406,7 +1409,10 @@ window.WK = {
       "away": "Kaapverdië",
       "homeFlag": "🇦🇷",
       "awayFlag": "🇨🇻",
-      "result": null
+      "result": {
+        "home": 3,
+        "away": 2
+      }
     },
     {
       "id": "k16",
@@ -1419,7 +1425,10 @@ window.WK = {
       "away": "Ghana",
       "homeFlag": "🇨🇴",
       "awayFlag": "🇬🇭",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 0
+      }
     }
   ],
   "predictions": {
@@ -3136,5 +3145,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-03T10:59:37"
+  "generatedAt": "2026-07-04T09:34:04"
 };
