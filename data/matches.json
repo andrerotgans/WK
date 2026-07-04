@@ -1274,7 +1274,10 @@
     "away": "Marokko",
     "homeFlag": "🇨🇦",
     "awayFlag": "🇲🇦",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 3
+    }
   },
   {
     "id": "k18",
