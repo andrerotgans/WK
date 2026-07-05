@@ -1290,7 +1290,10 @@
     "away": "Frankrijk",
     "homeFlag": "🇵🇾",
     "awayFlag": "🇫🇷",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 1
+    }
   },
   {
     "id": "k19",
