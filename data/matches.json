@@ -1306,7 +1306,10 @@
     "away": "Noorwegen",
     "homeFlag": "🇧🇷",
     "awayFlag": "🇳🇴",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 2
+    }
   },
   {
     "id": "k20",
@@ -1319,7 +1322,10 @@
     "away": "Engeland",
     "homeFlag": "🇲🇽",
     "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 3
+    }
   },
   {
     "id": "k21",
