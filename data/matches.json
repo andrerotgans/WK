@@ -1370,7 +1370,10 @@
     "away": "Egypte",
     "homeFlag": "🇦🇷",
     "awayFlag": "🇪🇬",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 2
+    }
   },
   {
     "id": "k24",
@@ -1383,6 +1386,9 @@
     "away": "Colombia",
     "homeFlag": "🇨🇭",
     "awayFlag": "🇨🇴",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 0
+    }
   }
 ]

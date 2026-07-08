@@ -1537,7 +1537,10 @@ window.WK = {
       "away": "Egypte",
       "homeFlag": "🇦🇷",
       "awayFlag": "🇪🇬",
-      "result": null
+      "result": {
+        "home": 3,
+        "away": 2
+      }
     },
     {
       "id": "k24",
@@ -1550,7 +1553,10 @@ window.WK = {
       "away": "Colombia",
       "homeFlag": "🇨🇭",
       "awayFlag": "🇨🇴",
-      "result": null
+      "result": {
+        "home": 0,
+        "away": 0
+      }
     }
   ],
   "predictions": {
@@ -3419,5 +3425,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-07T10:19:33"
+  "generatedAt": "2026-07-08T08:19:14"
 };
