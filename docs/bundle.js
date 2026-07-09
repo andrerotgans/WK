@@ -1557,6 +1557,58 @@ window.WK = {
         "home": 0,
         "away": 0
       }
+    },
+    {
+      "id": "k25",
+      "phase": "knockout",
+      "round": "QF",
+      "roundLabel": "Kwartfinales",
+      "datetime": "2026-07-09T22:00:00",
+      "datetimeLabel": "9 juli 22.00",
+      "home": "Frankrijk",
+      "away": "Marokko",
+      "homeFlag": "🇫🇷",
+      "awayFlag": "🇲🇦",
+      "result": null
+    },
+    {
+      "id": "k26",
+      "phase": "knockout",
+      "round": "QF",
+      "roundLabel": "Kwartfinales",
+      "datetime": "2026-07-10T21:00:00",
+      "datetimeLabel": "10 juli 21.00",
+      "home": "Spanje",
+      "away": "België",
+      "homeFlag": "🇪🇸",
+      "awayFlag": "🇧🇪",
+      "result": null
+    },
+    {
+      "id": "k27",
+      "phase": "knockout",
+      "round": "QF",
+      "roundLabel": "Kwartfinales",
+      "datetime": "2026-07-11T23:00:00",
+      "datetimeLabel": "11 juli 23.00",
+      "home": "Noorwegen",
+      "away": "Engeland",
+      "homeFlag": "🇳🇴",
+      "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "result": null
+    },
+    {
+      "id": "k28",
+      "phase": "knockout",
+      "round": "QF",
+      "roundLabel": "Kwartfinales",
+      "datetime": "2026-07-12T03:00:00",
+      "datetimeLabel": "12 juli 03.00",
+      "home": "Argentinië",
+      "away": "Zwitserland",
+      "homeFlag": "🇦🇷",
+      "awayFlag": "🇨🇭",
+      "result": null
     }
   ],
   "predictions": {
@@ -3383,6 +3435,82 @@ window.WK = {
       "Linda": "0-2",
       "Marijn": "1-1",
       "Thijs / Esther": "0-2"
+    },
+    "k25": {
+      "Ann": "1-1",
+      "Marco": "1-1",
+      "Anna": "2-0",
+      "Femke": "2-1",
+      "Jan / Annemarie": "3-2",
+      "Maartje": "2-1",
+      "Nan": "2-1",
+      "Mark": "3-1",
+      "Dautie": "3-1",
+      "Femm": "2-1",
+      "Tijme": "3-1",
+      "Piet": "2-1",
+      "Willy": "2-1",
+      "André": "2-1",
+      "Linda": "2-1",
+      "Marijn": "2-1",
+      "Thijs / Esther": "2-0"
+    },
+    "k26": {
+      "Ann": "0-1",
+      "Marco": "1-0",
+      "Anna": "1-2",
+      "Femke": "2-2",
+      "Jan / Annemarie": "3-1",
+      "Maartje": "2-0",
+      "Nan": "1-1",
+      "Mark": "2-0",
+      "Dautie": "2-0",
+      "Femm": "2-0",
+      "Tijme": "3-1",
+      "Piet": "2-1",
+      "Willy": "3-2",
+      "André": "2-2",
+      "Linda": "2-1",
+      "Marijn": "1-0",
+      "Thijs / Esther": "2-0"
+    },
+    "k27": {
+      "Ann": "1-2",
+      "Marco": "2-1",
+      "Anna": "3-2",
+      "Femke": "2-1",
+      "Jan / Annemarie": "2-2",
+      "Maartje": "1-1",
+      "Nan": "2-2",
+      "Mark": "1-1",
+      "Dautie": "1-1",
+      "Femm": "1-1",
+      "Tijme": "1-2",
+      "Piet": "2-2",
+      "Willy": "2-2",
+      "André": "2-1",
+      "Linda": "1-1",
+      "Marijn": "2-1",
+      "Thijs / Esther": "2-0"
+    },
+    "k28": {
+      "Ann": "3-1",
+      "Marco": "3-0",
+      "Anna": "1-1",
+      "Femke": "2-0",
+      "Jan / Annemarie": "2-1",
+      "Maartje": "2-0",
+      "Nan": "2-0",
+      "Mark": "1-0",
+      "Dautie": "2-0",
+      "Femm": "2-0",
+      "Tijme": "3-1",
+      "Piet": "2-1",
+      "Willy": "3-1",
+      "André": "2-0",
+      "Linda": "3-0",
+      "Marijn": "1-0",
+      "Thijs / Esther": "2-0"
     }
   },
   "bonusPredictions": {
@@ -3425,5 +3553,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-08T08:19:14"
+  "generatedAt": "2026-07-09T20:50:55"
 };

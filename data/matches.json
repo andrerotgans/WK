@@ -1390,5 +1390,57 @@
       "home": 0,
       "away": 0
     }
+  },
+  {
+    "id": "k25",
+    "phase": "knockout",
+    "round": "QF",
+    "roundLabel": "Kwartfinales",
+    "datetime": "2026-07-09T22:00:00",
+    "datetimeLabel": "9 juli 22.00",
+    "home": "Frankrijk",
+    "away": "Marokko",
+    "homeFlag": "🇫🇷",
+    "awayFlag": "🇲🇦",
+    "result": null
+  },
+  {
+    "id": "k26",
+    "phase": "knockout",
+    "round": "QF",
+    "roundLabel": "Kwartfinales",
+    "datetime": "2026-07-10T21:00:00",
+    "datetimeLabel": "10 juli 21.00",
+    "home": "Spanje",
+    "away": "België",
+    "homeFlag": "🇪🇸",
+    "awayFlag": "🇧🇪",
+    "result": null
+  },
+  {
+    "id": "k27",
+    "phase": "knockout",
+    "round": "QF",
+    "roundLabel": "Kwartfinales",
+    "datetime": "2026-07-11T23:00:00",
+    "datetimeLabel": "11 juli 23.00",
+    "home": "Noorwegen",
+    "away": "Engeland",
+    "homeFlag": "🇳🇴",
+    "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "result": null
+  },
+  {
+    "id": "k28",
+    "phase": "knockout",
+    "round": "QF",
+    "roundLabel": "Kwartfinales",
+    "datetime": "2026-07-12T03:00:00",
+    "datetimeLabel": "12 juli 03.00",
+    "home": "Argentinië",
+    "away": "Zwitserland",
+    "homeFlag": "🇦🇷",
+    "awayFlag": "🇨🇭",
+    "result": null
   }
 ]
