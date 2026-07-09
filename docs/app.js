@@ -392,6 +392,7 @@ function viewKnockout() {
   KO_MATCHES.forEach(m => { (byRound[m.round] = byRound[m.round] || []).push(m); });
   const rounds = KO_ROUND_ORDER.filter(r => byRound[r]);
   Object.keys(byRound).forEach(r => { if (!rounds.includes(r)) rounds.push(r); });
+  rounds.reverse(); // meest actuele ronde bovenaan, dan steeds verder terug
 
   rounds.forEach(r => {
     const ms = byRound[r];
