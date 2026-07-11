@@ -1418,7 +1418,10 @@
     "away": "België",
     "homeFlag": "🇪🇸",
     "awayFlag": "🇧🇪",
-    "result": null
+    "result": {
+      "home": 2,
+      "away": 1
+    }
   },
   {
     "id": "k27",
