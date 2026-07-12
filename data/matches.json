@@ -1434,7 +1434,10 @@
     "away": "Engeland",
     "homeFlag": "🇳🇴",
     "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 2
+    }
   },
   {
     "id": "k28",
@@ -1447,6 +1450,9 @@
     "away": "Zwitserland",
     "homeFlag": "🇦🇷",
     "awayFlag": "🇨🇭",
-    "result": null
+    "result": {
+      "home": 3,
+      "away": 1
+    }
   }
 ]
