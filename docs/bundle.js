@@ -1621,6 +1621,32 @@ window.WK = {
         "home": 3,
         "away": 1
       }
+    },
+    {
+      "id": "k29",
+      "phase": "knockout",
+      "round": "SF",
+      "roundLabel": "Halve finales",
+      "datetime": "2026-07-14T21:00:00",
+      "datetimeLabel": "14 juli 21.00",
+      "home": "Frankrijk",
+      "away": "Spanje",
+      "homeFlag": "🇫🇷",
+      "awayFlag": "🇪🇸",
+      "result": null
+    },
+    {
+      "id": "k30",
+      "phase": "knockout",
+      "round": "SF",
+      "roundLabel": "Halve finales",
+      "datetime": "2026-07-15T21:00:00",
+      "datetimeLabel": "15 juli 21.00",
+      "home": "Engeland",
+      "away": "Argentinië",
+      "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "awayFlag": "🇦🇷",
+      "result": null
     }
   ],
   "predictions": {
@@ -3523,6 +3549,44 @@ window.WK = {
       "Linda": "3-0",
       "Marijn": "1-0",
       "Thijs / Esther": "2-0"
+    },
+    "k29": {
+      "Ann": "2-2",
+      "Marco": "1-1",
+      "Anna": "2-1",
+      "Femke": "2-1",
+      "Jan / Annemarie": "1-2",
+      "Maartje": "1-0",
+      "Nan": "3-1",
+      "Mark": "2-3",
+      "Dautie": "2-1",
+      "Femm": "0-1",
+      "Tijme": "3-1",
+      "Piet": "3-2",
+      "Willy": "2-1",
+      "André": "1-2",
+      "Linda": "2-1",
+      "Marijn": "0-1",
+      "Thijs / Esther": "2-0"
+    },
+    "k30": {
+      "Ann": "1-3",
+      "Marco": "2-2",
+      "Anna": "1-1",
+      "Femke": "2-1",
+      "Jan / Annemarie": "1-1",
+      "Maartje": "1-0",
+      "Nan": "2-2",
+      "Mark": "2-2",
+      "Dautie": "1-2",
+      "Femm": "1-0",
+      "Tijme": "3-3",
+      "Piet": "0-0",
+      "Willy": "1-2",
+      "André": "3-2",
+      "Linda": "1-1",
+      "Marijn": "1-0",
+      "Thijs / Esther": "0-2"
     }
   },
   "bonusPredictions": {
@@ -3565,5 +3629,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-12T09:30:12"
+  "generatedAt": "2026-07-13T22:01:13"
 };

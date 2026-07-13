@@ -1454,5 +1454,31 @@
       "home": 3,
       "away": 1
     }
+  },
+  {
+    "id": "k29",
+    "phase": "knockout",
+    "round": "SF",
+    "roundLabel": "Halve finales",
+    "datetime": "2026-07-14T21:00:00",
+    "datetimeLabel": "14 juli 21.00",
+    "home": "Frankrijk",
+    "away": "Spanje",
+    "homeFlag": "🇫🇷",
+    "awayFlag": "🇪🇸",
+    "result": null
+  },
+  {
+    "id": "k30",
+    "phase": "knockout",
+    "round": "SF",
+    "roundLabel": "Halve finales",
+    "datetime": "2026-07-15T21:00:00",
+    "datetimeLabel": "15 juli 21.00",
+    "home": "Engeland",
+    "away": "Argentinië",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "awayFlag": "🇦🇷",
+    "result": null
   }
 ]
