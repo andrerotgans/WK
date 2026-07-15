@@ -1466,7 +1466,10 @@
     "away": "Spanje",
     "homeFlag": "🇫🇷",
     "awayFlag": "🇪🇸",
-    "result": null
+    "result": {
+      "home": 0,
+      "away": 2
+    }
   },
   {
     "id": "k30",
