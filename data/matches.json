@@ -1486,5 +1486,31 @@
       "home": 1,
       "away": 2
     }
+  },
+  {
+    "id": "k31",
+    "phase": "knockout",
+    "round": "3P",
+    "roundLabel": "Troostfinale",
+    "datetime": "2026-07-18T23:00:00",
+    "datetimeLabel": "18 juli 23.00",
+    "home": "Engeland",
+    "away": "Frankrijk",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "awayFlag": "🇫🇷",
+    "result": null
+  },
+  {
+    "id": "k32",
+    "phase": "knockout",
+    "round": "F",
+    "roundLabel": "Finale",
+    "datetime": "2026-07-19T21:00:00",
+    "datetimeLabel": "19 juli 21.00",
+    "home": "Spanje",
+    "away": "Argentinië",
+    "homeFlag": "🇪🇸",
+    "awayFlag": "🇦🇷",
+    "result": null
   }
 ]
