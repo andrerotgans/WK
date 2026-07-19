@@ -161,7 +161,9 @@ window.WK = {
       },
       "topscorer": {
         "label": "Topscorer WK 2026",
-        "result": []
+        "result": [
+          "Mbappé"
+        ]
       }
     }
   },
@@ -3705,5 +3707,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-20T00:04:18"
+  "generatedAt": "2026-07-20T00:10:54"
 };
