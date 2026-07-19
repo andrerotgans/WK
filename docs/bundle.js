@@ -157,7 +157,7 @@ window.WK = {
     "bonus": {
       "champion": {
         "label": "Kampioen WK 2026",
-        "result": null
+        "result": "SPA"
       },
       "topscorer": {
         "label": "Topscorer WK 2026",
@@ -1681,7 +1681,10 @@ window.WK = {
       "away": "Argentinië",
       "homeFlag": "🇪🇸",
       "awayFlag": "🇦🇷",
-      "result": null
+      "result": {
+        "home": 1,
+        "away": 0
+      }
     }
   ],
   "predictions": {
@@ -3702,5 +3705,5 @@ window.WK = {
       "Thijs / Esther": "Mbappé"
     }
   },
-  "generatedAt": "2026-07-19T09:01:20"
+  "generatedAt": "2026-07-20T00:04:18"
 };

@@ -1514,6 +1514,9 @@
     "away": "Argentinië",
     "homeFlag": "🇪🇸",
     "awayFlag": "🇦🇷",
-    "result": null
+    "result": {
+      "home": 1,
+      "away": 0
+    }
   }
 ]
