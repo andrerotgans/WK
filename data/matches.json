@@ -1498,7 +1498,10 @@
     "away": "Frankrijk",
     "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "awayFlag": "🇫🇷",
-    "result": null
+    "result": {
+      "home": 6,
+      "away": 4
+    }
   },
   {
     "id": "k32",
